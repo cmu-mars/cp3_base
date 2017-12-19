@@ -10,7 +10,7 @@
   <arg name="custom_param_file" value="$(find cp3_base)/param/move_base_params.yaml"/>
 
   <!-- This is the map file that will be used for planning -->
-  <arg name="map_file" value="$(find cp_maps)/maps/cp3.yaml"/>
+  <arg name="map_file" value="$(find cp3_base)/maps/cp3.yaml"/>
 
   <!-- Start the gazebo world, so that obstacles can be mapped -->
   <!-- NOTE: The maze in the world might not be needed if the map server is required -->
