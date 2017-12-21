@@ -2,335 +2,597 @@
   <sdf version="1.6">
     
     
+    
+    
   
+    
+    
     
     <world name="default">
       
       
+      
+      
     
       
       
       
     
+      
+      
       
       <scene>
         
         
+        
+        
       
+        
+        
         
         <ambient>0.4 0.4 0.4 1</ambient>
         
         
+        
+        
       
+        
+        
         
         <background>0.7 0.7 0.7 1</background>
         
         
+        
+        
       
+        
+        
         
         <shadows>1</shadows>
         
         
+        
+        
     
+      
+      
       
       </scene>
       
       
+      
+      
     
+      
+      
       
       <physics default="0" name="default_physics" type="ode">
         
         
+        
+        
       
+        
+        
         
         <max_step_size>0.01</max_step_size>
         
         
+        
+        
       
+        
+        
         
         <real_time_factor>1</real_time_factor>
         
         
+        
+        
       
+        
+        
         
         <real_time_update_rate>100</real_time_update_rate>
         
         
+        
+        
     
+      
+      
       
       </physics>
       
       
+      
+      
     
+      
+      
       
       <model name="ground_plane_0">
         
         
+        
+        
       
+        
+        
         
         <static>1</static>
         
         
+        
+        
       
+        
+        
         
         <link name="link">
           
           
+          
+          
         
+          
+          
           
           <collision name="collision">
             
             
+            
+            
           
+            
+            
             
             <geometry>
               
               
+              
+              
             
+              
+              
               
               <plane>
                 
                 
+                
+                
               
+                
+                
                 
                 <normal>0 0 1</normal>
                 
                 
+                
+                
               
+                
+                
                 
                 <size>100 100</size>
                 
                 
+                
+                
             
+              
+              
               
               </plane>
               
               
+              
+              
           
+            
+            
             
             </geometry>
             
             
+            
+            
           
+            
+            
             
             <surface>
               
               
+              
+              
             
+              
+              
               
               <friction>
                 
                 
+                
+                
               
+                
+                
                 
                 <ode>
                   
                   
+                  
+                  
                 
+                  
+                  
                   
                   <mu>100</mu>
                   
                   
+                  
+                  
                 
+                  
+                  
                   
                   <mu2>50</mu2>
                   
                   
+                  
+                  
               
+                
+                
                 
                 </ode>
                 
                 
+                
+                
               
+                
+                
                 
                 <torsional>
                   
                   
+                  
+                  
                 
+                  
+                  
                   
                   <ode/>
                   
                   
+                  
+                  
               
+                
+                
                 
                 </torsional>
                 
                 
+                
+                
             
+              
+              
               
               </friction>
               
               
+              
+              
             
+              
+              
               
               <bounce/>
               
               
+              
+              
             
+              
+              
               
               <contact>
                 
                 
+                
+                
               
+                
+                
                 
                 <ode/>
                 
                 
+                
+                
             
+              
+              
               
               </contact>
               
               
+              
+              
           
+            
+            
             
             </surface>
             
             
+            
+            
           
+            
+            
             
             <max_contacts>10</max_contacts>
             
             
+            
+            
         
+          
+          
           
           </collision>
           
           
+          
+          
         
+          
+          
           
           <visual name="visual">
             
             
+            
+            
           
+            
+            
             
             <cast_shadows>0</cast_shadows>
             
             
+            
+            
           
+            
+            
             
             <geometry>
               
               
+              
+              
             
+              
+              
               
               <plane>
                 
                 
+                
+                
               
+                
+                
                 
                 <normal>0 0 1</normal>
                 
                 
+                
+                
               
+                
+                
                 
                 <size>100 100</size>
                 
                 
+                
+                
             
+              
+              
               
               </plane>
               
               
+              
+              
           
+            
+            
             
             </geometry>
             
             
+            
+            
           
+            
+            
             
             <material>
               
               
+              
+              
             
+              
+              
               
               <script>
                 
                 
+                
+                
               
+                
+                
                 
                 <uri>file://media/materials/scripts/gazebo.material</uri>
                 
                 
+                
+                
               
+                
+                
                 
                 <name>Gazebo/Grey</name>
                 
                 
+                
+                
             
+              
+              
               
               </script>
               
               
+              
+              
           
+            
+            
             
             </material>
             
             
+            
+            
         
+          
+          
           
           </visual>
           
           
+          
+          
         
+          
+          
           
           <velocity_decay>
             
             
+            
+            
           
+            
+            
             
             <linear>0</linear>
             
             
+            
+            
           
+            
+            
             
             <angular>0</angular>
             
             
+            
+            
         
+          
+          
           
           </velocity_decay>
           
           
+          
+          
         
+          
+          
           
           <self_collide>0</self_collide>
           
           
+          
+          
         
+          
+          
           
           <kinematic>0</kinematic>
           
           
+          
+          
         
+          
+          
           
           <gravity>1</gravity>
           
           
+          
+          
       
+        
+        
         
         </link>
         
         
+        
+        
       
+        
+        
         
         <pose frame="">0.497681 0 0 0 -0 0</pose>
         
         
+        
+        
     
+      
+      
       
       </model>
       
       
+      
+      
        
+      
+      
       
       <model name="Wean4Complete">
         
         
+        
+        
       
+        
+        
         
         <pose>-5 0 0 0 -0 0</pose>
         
         
+        
+        
       
         
       
@@ -560,11 +822,331 @@
       
         
       
+        
+        
         
         <static>1</static>
         
         
+        
+        
     
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      
+      
         
         <link name="Wall_0">
           
@@ -2990,14 +3572,12 @@
         </link>
         
         
-        
-        
-        <link name="Wall_13">
+        <link name="Wall_12">
           
           
         
           
-          <collision name="Wall_13_Collision">
+          <collision name="Wall_12_Collision">
             
             
           
@@ -3090,7 +3670,7 @@
           
         
           
-          <visual name="Wall_13_Visual">
+          <visual name="Wall_12_Visual">
             
             
           
@@ -3194,12 +3774,12 @@
         </link>
         
         
-        <link name="Wall_14">
+        <link name="Wall_13">
           
           
         
           
-          <collision name="Wall_14_Collision">
+          <collision name="Wall_13_Collision">
             
             
           
@@ -3292,7 +3872,7 @@
           
         
           
-          <visual name="Wall_14_Visual">
+          <visual name="Wall_13_Visual">
             
             
           
@@ -3396,12 +3976,12 @@
         </link>
         
         
-        <link name="Wall_15">
+        <link name="Wall_14">
           
           
         
           
-          <collision name="Wall_15_Collision">
+          <collision name="Wall_14_Collision">
             
             
           
@@ -3494,7 +4074,7 @@
           
         
           
-          <visual name="Wall_15_Visual">
+          <visual name="Wall_14_Visual">
             
             
           
@@ -3598,12 +4178,12 @@
         </link>
         
         
-        <link name="Wall_16">
+        <link name="Wall_15">
           
           
         
           
-          <collision name="Wall_16_Collision">
+          <collision name="Wall_15_Collision">
             
             
           
@@ -3696,7 +4276,7 @@
           
         
           
-          <visual name="Wall_16_Visual">
+          <visual name="Wall_15_Visual">
             
             
           
@@ -3800,12 +4380,12 @@
         </link>
         
         
-        <link name="Wall_17">
+        <link name="Wall_16">
           
           
         
           
-          <collision name="Wall_17_Collision">
+          <collision name="Wall_16_Collision">
             
             
           
@@ -3898,7 +4478,7 @@
           
         
           
-          <visual name="Wall_17_Visual">
+          <visual name="Wall_16_Visual">
             
             
           
@@ -4002,12 +4582,12 @@
         </link>
         
         
-        <link name="Wall_18">
+        <link name="Wall_17">
           
           
         
           
-          <collision name="Wall_18_Collision">
+          <collision name="Wall_17_Collision">
             
             
           
@@ -4100,7 +4680,7 @@
           
         
           
-          <visual name="Wall_18_Visual">
+          <visual name="Wall_17_Visual">
             
             
           
@@ -4204,12 +4784,12 @@
         </link>
         
         
-        <link name="Wall_19">
+        <link name="Wall_18">
           
           
         
           
-          <collision name="Wall_19_Collision">
+          <collision name="Wall_18_Collision">
             
             
           
@@ -4302,7 +4882,7 @@
           
         
           
-          <visual name="Wall_19_Visual">
+          <visual name="Wall_18_Visual">
             
             
           
@@ -4406,12 +4986,12 @@
         </link>
         
         
-        <link name="Wall_20">
+        <link name="Wall_19">
           
           
         
           
-          <collision name="Wall_20_Collision">
+          <collision name="Wall_19_Collision">
             
             
           
@@ -4504,7 +5084,7 @@
           
         
           
-          <visual name="Wall_20_Visual">
+          <visual name="Wall_19_Visual">
             
             
           
@@ -4608,12 +5188,12 @@
         </link>
         
         
-        <link name="Wall_21">
+        <link name="Wall_20">
           
           
         
           
-          <collision name="Wall_21_Collision">
+          <collision name="Wall_20_Collision">
             
             
           
@@ -4706,7 +5286,7 @@
           
         
           
-          <visual name="Wall_21_Visual">
+          <visual name="Wall_20_Visual">
             
             
           
@@ -4810,12 +5390,12 @@
         </link>
         
         
-        <link name="Wall_22">
+        <link name="Wall_21">
           
           
         
           
-          <collision name="Wall_22_Collision">
+          <collision name="Wall_21_Collision">
             
             
           
@@ -4908,7 +5488,7 @@
           
         
           
-          <visual name="Wall_22_Visual">
+          <visual name="Wall_21_Visual">
             
             
           
@@ -5012,12 +5592,12 @@
         </link>
         
         
-        <link name="Wall_23">
+        <link name="Wall_22">
           
           
         
           
-          <collision name="Wall_23_Collision">
+          <collision name="Wall_22_Collision">
             
             
           
@@ -5110,7 +5690,7 @@
           
         
           
-          <visual name="Wall_23_Visual">
+          <visual name="Wall_22_Visual">
             
             
           
@@ -5214,12 +5794,12 @@
         </link>
         
         
-        <link name="Wall_24">
+        <link name="Wall_23">
           
           
         
           
-          <collision name="Wall_24_Collision">
+          <collision name="Wall_23_Collision">
             
             
           
@@ -5312,7 +5892,7 @@
           
         
           
-          <visual name="Wall_24_Visual">
+          <visual name="Wall_23_Visual">
             
             
           
@@ -5416,12 +5996,12 @@
         </link>
         
         
-        <link name="Wall_25">
+        <link name="Wall_24">
           
           
         
           
-          <collision name="Wall_25_Collision">
+          <collision name="Wall_24_Collision">
             
             
           
@@ -5514,7 +6094,7 @@
           
         
           
-          <visual name="Wall_25_Visual">
+          <visual name="Wall_24_Visual">
             
             
           
@@ -5618,12 +6198,12 @@
         </link>
         
         
-        <link name="Wall_26">
+        <link name="Wall_25">
           
           
         
           
-          <collision name="Wall_26_Collision">
+          <collision name="Wall_25_Collision">
             
             
           
@@ -5716,7 +6296,7 @@
           
         
           
-          <visual name="Wall_26_Visual">
+          <visual name="Wall_25_Visual">
             
             
           
@@ -5820,12 +6400,12 @@
         </link>
         
         
-        <link name="Wall_27">
+        <link name="Wall_26">
           
           
         
           
-          <collision name="Wall_27_Collision">
+          <collision name="Wall_26_Collision">
             
             
           
@@ -5918,7 +6498,7 @@
           
         
           
-          <visual name="Wall_27_Visual">
+          <visual name="Wall_26_Visual">
             
             
           
@@ -6022,12 +6602,12 @@
         </link>
         
         
-        <link name="Wall_28">
+        <link name="Wall_27">
           
           
         
           
-          <collision name="Wall_28_Collision">
+          <collision name="Wall_27_Collision">
             
             
           
@@ -6120,7 +6700,7 @@
           
         
           
-          <visual name="Wall_28_Visual">
+          <visual name="Wall_27_Visual">
             
             
           
@@ -6224,12 +6804,12 @@
         </link>
         
         
-        <link name="Wall_29">
+        <link name="Wall_28">
           
           
         
           
-          <collision name="Wall_29_Collision">
+          <collision name="Wall_28_Collision">
             
             
           
@@ -6322,7 +6902,7 @@
           
         
           
-          <visual name="Wall_29_Visual">
+          <visual name="Wall_28_Visual">
             
             
           
@@ -6421,6 +7001,208 @@
       
           
           <pose>38.7 9.5 0 0 0 0.0</pose>
+          
+        
+        </link>
+        
+        
+        <link name="Wall_29">
+          
+          
+        
+          
+          <collision name="Wall_29_Collision">
+            
+            
+          
+            
+            <geometry>
+              
+              
+            
+              
+              <box>
+                
+                
+              
+                
+                <!-- <size>SIZE</size> -->
+                
+                
+            
+                
+                <size>0.5 0.15 2.5</size>
+                
+              
+              </box>
+              
+              
+          
+            
+            </geometry>
+            
+            
+          
+            
+            <pose>0 0 1.25 0 -0 0</pose>
+            
+            
+          
+            
+            <max_contacts>10</max_contacts>
+            
+            
+          
+            
+            <surface>
+              
+              
+            
+              
+              <contact>
+                
+                
+              
+                
+                <ode/>
+                
+                
+            
+              
+              </contact>
+              
+              
+            
+              
+              <bounce/>
+              
+              
+            
+              
+              <friction>
+                
+                
+              
+                
+                <ode/>
+                
+                
+            
+              
+              </friction>
+              
+              
+          
+            
+            </surface>
+            
+            
+        
+          
+          </collision>
+          
+          
+        
+          
+          <visual name="Wall_29_Visual">
+            
+            
+          
+            
+            <pose>0 0 1.25 0 -0 0</pose>
+            
+            
+          
+            
+            <geometry>
+              
+              
+            
+              
+              <box>
+                
+                
+              
+                
+                <!-- <size>SIZE</size> -->
+                
+                
+            
+                
+                <size>0.5 0.15 2.5</size>
+                
+              
+              </box>
+              
+              
+          
+            
+            </geometry>
+            
+            
+          
+            
+            <material>
+              
+              
+            
+              
+              <script>
+                
+                
+              
+                
+                <uri>file://media/materials/scripts/gazebo.material</uri>
+                
+                
+              
+                
+                <name>Gazebo/Grey</name>
+                
+                
+            
+              
+              </script>
+              
+              
+            
+              
+              <ambient>1 1 1 1</ambient>
+              
+              
+          
+            
+            </material>
+            
+            
+        
+          
+          </visual>
+          
+          
+        
+          
+          <!-- <pose >POSE</pose> -->
+          
+          
+        
+          
+          <self_collide>0</self_collide>
+          
+          
+        
+          
+          <kinematic>0</kinematic>
+          
+          
+        
+          
+          <gravity>1</gravity>
+          
+          
+      
+          
+          <pose>39.95 9.25 0 0 0 1.57079632679</pose>
           
         
         </link>
@@ -6622,7 +7404,7 @@
           
       
           
-          <pose>39.95 9.25 0 0 0 1.57079632679</pose>
+          <pose>39.95 7.0 0 0 0 1.57079632679</pose>
           
         
         </link>
@@ -6634,208 +7416,6 @@
         
           
           <collision name="Wall_31_Collision">
-            
-            
-          
-            
-            <geometry>
-              
-              
-            
-              
-              <box>
-                
-                
-              
-                
-                <!-- <size>SIZE</size> -->
-                
-                
-            
-                
-                <size>0.5 0.15 2.5</size>
-                
-              
-              </box>
-              
-              
-          
-            
-            </geometry>
-            
-            
-          
-            
-            <pose>0 0 1.25 0 -0 0</pose>
-            
-            
-          
-            
-            <max_contacts>10</max_contacts>
-            
-            
-          
-            
-            <surface>
-              
-              
-            
-              
-              <contact>
-                
-                
-              
-                
-                <ode/>
-                
-                
-            
-              
-              </contact>
-              
-              
-            
-              
-              <bounce/>
-              
-              
-            
-              
-              <friction>
-                
-                
-              
-                
-                <ode/>
-                
-                
-            
-              
-              </friction>
-              
-              
-          
-            
-            </surface>
-            
-            
-        
-          
-          </collision>
-          
-          
-        
-          
-          <visual name="Wall_31_Visual">
-            
-            
-          
-            
-            <pose>0 0 1.25 0 -0 0</pose>
-            
-            
-          
-            
-            <geometry>
-              
-              
-            
-              
-              <box>
-                
-                
-              
-                
-                <!-- <size>SIZE</size> -->
-                
-                
-            
-                
-                <size>0.5 0.15 2.5</size>
-                
-              
-              </box>
-              
-              
-          
-            
-            </geometry>
-            
-            
-          
-            
-            <material>
-              
-              
-            
-              
-              <script>
-                
-                
-              
-                
-                <uri>file://media/materials/scripts/gazebo.material</uri>
-                
-                
-              
-                
-                <name>Gazebo/Grey</name>
-                
-                
-            
-              
-              </script>
-              
-              
-            
-              
-              <ambient>1 1 1 1</ambient>
-              
-              
-          
-            
-            </material>
-            
-            
-        
-          
-          </visual>
-          
-          
-        
-          
-          <!-- <pose >POSE</pose> -->
-          
-          
-        
-          
-          <self_collide>0</self_collide>
-          
-          
-        
-          
-          <kinematic>0</kinematic>
-          
-          
-        
-          
-          <gravity>1</gravity>
-          
-          
-      
-          
-          <pose>39.95 7.0 0 0 0 1.57079632679</pose>
-          
-        
-        </link>
-        
-        
-        <link name="Wall_32">
-          
-          
-        
-          
-          <collision name="Wall_32_Collision">
             
             
           
@@ -6928,7 +7508,7 @@
           
         
           
-          <visual name="Wall_32_Visual">
+          <visual name="Wall_31_Visual">
             
             
           
@@ -7032,12 +7612,12 @@
         </link>
         
         
-        <link name="Wall_33">
+        <link name="Wall_32">
           
           
         
           
-          <collision name="Wall_33_Collision">
+          <collision name="Wall_32_Collision">
             
             
           
@@ -7130,7 +7710,7 @@
           
         
           
-          <visual name="Wall_33_Visual">
+          <visual name="Wall_32_Visual">
             
             
           
@@ -7234,12 +7814,12 @@
         </link>
         
         
-        <link name="Wall_34">
+        <link name="Wall_33">
           
           
         
           
-          <collision name="Wall_34_Collision">
+          <collision name="Wall_33_Collision">
             
             
           
@@ -7332,7 +7912,7 @@
           
         
           
-          <visual name="Wall_34_Visual">
+          <visual name="Wall_33_Visual">
             
             
           
@@ -7436,12 +8016,12 @@
         </link>
         
         
-        <link name="Wall_35">
+        <link name="Wall_34">
           
           
         
           
-          <collision name="Wall_35_Collision">
+          <collision name="Wall_34_Collision">
             
             
           
@@ -7534,7 +8114,7 @@
           
         
           
-          <visual name="Wall_35_Visual">
+          <visual name="Wall_34_Visual">
             
             
           
@@ -7638,12 +8218,12 @@
         </link>
         
         
-        <link name="Wall_36">
+        <link name="Wall_35">
           
           
         
           
-          <collision name="Wall_36_Collision">
+          <collision name="Wall_35_Collision">
             
             
           
@@ -7736,7 +8316,7 @@
           
         
           
-          <visual name="Wall_36_Visual">
+          <visual name="Wall_35_Visual">
             
             
           
@@ -7840,12 +8420,12 @@
         </link>
         
         
-        <link name="Wall_37">
+        <link name="Wall_36">
           
           
         
           
-          <collision name="Wall_37_Collision">
+          <collision name="Wall_36_Collision">
             
             
           
@@ -7938,7 +8518,7 @@
           
         
           
-          <visual name="Wall_37_Visual">
+          <visual name="Wall_36_Visual">
             
             
           
@@ -8042,12 +8622,12 @@
         </link>
         
         
-        <link name="Wall_38">
+        <link name="Wall_37">
           
           
         
           
-          <collision name="Wall_38_Collision">
+          <collision name="Wall_37_Collision">
             
             
           
@@ -8140,7 +8720,7 @@
           
         
           
-          <visual name="Wall_38_Visual">
+          <visual name="Wall_37_Visual">
             
             
           
@@ -8244,12 +8824,12 @@
         </link>
         
         
-        <link name="Wall_39">
+        <link name="Wall_38">
           
           
         
           
-          <collision name="Wall_39_Collision">
+          <collision name="Wall_38_Collision">
             
             
           
@@ -8342,7 +8922,7 @@
           
         
           
-          <visual name="Wall_39_Visual">
+          <visual name="Wall_38_Visual">
             
             
           
@@ -8446,12 +9026,12 @@
         </link>
         
         
-        <link name="Wall_40">
+        <link name="Wall_39">
           
           
         
           
-          <collision name="Wall_40_Collision">
+          <collision name="Wall_39_Collision">
             
             
           
@@ -8544,7 +9124,7 @@
           
         
           
-          <visual name="Wall_40_Visual">
+          <visual name="Wall_39_Visual">
             
             
           
@@ -8648,12 +9228,12 @@
         </link>
         
         
-        <link name="Wall_41">
+        <link name="Wall_40">
           
           
         
           
-          <collision name="Wall_41_Collision">
+          <collision name="Wall_40_Collision">
             
             
           
@@ -8746,7 +9326,7 @@
           
         
           
-          <visual name="Wall_41_Visual">
+          <visual name="Wall_40_Visual">
             
             
           
@@ -8850,12 +9430,12 @@
         </link>
         
         
-        <link name="Wall_42">
+        <link name="Wall_41">
           
           
         
           
-          <collision name="Wall_42_Collision">
+          <collision name="Wall_41_Collision">
             
             
           
@@ -8948,7 +9528,7 @@
           
         
           
-          <visual name="Wall_42_Visual">
+          <visual name="Wall_41_Visual">
             
             
           
@@ -9052,12 +9632,12 @@
         </link>
         
         
-        <link name="Wall_43">
+        <link name="Wall_42">
           
           
         
           
-          <collision name="Wall_43_Collision">
+          <collision name="Wall_42_Collision">
             
             
           
@@ -9150,7 +9730,7 @@
           
         
           
-          <visual name="Wall_43_Visual">
+          <visual name="Wall_42_Visual">
             
             
           
@@ -9254,12 +9834,12 @@
         </link>
         
         
-        <link name="Wall_44">
+        <link name="Wall_43">
           
           
         
           
-          <collision name="Wall_44_Collision">
+          <collision name="Wall_43_Collision">
             
             
           
@@ -9352,7 +9932,7 @@
           
         
           
-          <visual name="Wall_44_Visual">
+          <visual name="Wall_43_Visual">
             
             
           
@@ -9456,12 +10036,12 @@
         </link>
         
         
-        <link name="Wall_45">
+        <link name="Wall_44">
           
           
         
           
-          <collision name="Wall_45_Collision">
+          <collision name="Wall_44_Collision">
             
             
           
@@ -9554,7 +10134,7 @@
           
         
           
-          <visual name="Wall_45_Visual">
+          <visual name="Wall_44_Visual">
             
             
           
@@ -9658,12 +10238,12 @@
         </link>
         
         
-        <link name="Wall_46">
+        <link name="Wall_45">
           
           
         
           
-          <collision name="Wall_46_Collision">
+          <collision name="Wall_45_Collision">
             
             
           
@@ -9756,7 +10336,7 @@
           
         
           
-          <visual name="Wall_46_Visual">
+          <visual name="Wall_45_Visual">
             
             
           
@@ -9860,12 +10440,12 @@
         </link>
         
         
-        <link name="Wall_47">
+        <link name="Wall_46">
           
           
         
           
-          <collision name="Wall_47_Collision">
+          <collision name="Wall_46_Collision">
             
             
           
@@ -9958,7 +10538,7 @@
           
         
           
-          <visual name="Wall_47_Visual">
+          <visual name="Wall_46_Visual">
             
             
           
@@ -10062,12 +10642,12 @@
         </link>
         
         
-        <link name="Wall_48">
+        <link name="Wall_47">
           
           
         
           
-          <collision name="Wall_48_Collision">
+          <collision name="Wall_47_Collision">
             
             
           
@@ -10160,7 +10740,7 @@
           
         
           
-          <visual name="Wall_48_Visual">
+          <visual name="Wall_47_Visual">
             
             
           
@@ -10264,12 +10844,12 @@
         </link>
         
         
-        <link name="Wall_49">
+        <link name="Wall_48">
           
           
         
           
-          <collision name="Wall_49_Collision">
+          <collision name="Wall_48_Collision">
             
             
           
@@ -10362,7 +10942,7 @@
           
         
           
-          <visual name="Wall_49_Visual">
+          <visual name="Wall_48_Visual">
             
             
           
@@ -10466,12 +11046,12 @@
         </link>
         
         
-        <link name="Wall_50">
+        <link name="Wall_49">
           
           
         
           
-          <collision name="Wall_50_Collision">
+          <collision name="Wall_49_Collision">
             
             
           
@@ -10564,7 +11144,7 @@
           
         
           
-          <visual name="Wall_50_Visual">
+          <visual name="Wall_49_Visual">
             
             
           
@@ -10668,12 +11248,12 @@
         </link>
         
         
-        <link name="Wall_51">
+        <link name="Wall_50">
           
           
         
           
-          <collision name="Wall_51_Collision">
+          <collision name="Wall_50_Collision">
             
             
           
@@ -10766,7 +11346,7 @@
           
         
           
-          <visual name="Wall_51_Visual">
+          <visual name="Wall_50_Visual">
             
             
           
@@ -10870,12 +11450,12 @@
         </link>
         
         
-        <link name="Wall_52">
+        <link name="Wall_51">
           
           
         
           
-          <collision name="Wall_52_Collision">
+          <collision name="Wall_51_Collision">
             
             
           
@@ -10968,7 +11548,7 @@
           
         
           
-          <visual name="Wall_52_Visual">
+          <visual name="Wall_51_Visual">
             
             
           
@@ -11067,6 +11647,208 @@
       
           
           <pose>1.95 -34.75 0 0 0 1.57079632679</pose>
+          
+        
+        </link>
+        
+        
+        <link name="Wall_52">
+          
+          
+        
+          
+          <collision name="Wall_52_Collision">
+            
+            
+          
+            
+            <geometry>
+              
+              
+            
+              
+              <box>
+                
+                
+              
+                
+                <!-- <size>SIZE</size> -->
+                
+                
+            
+                
+                <size>1.5 0.15 2.5</size>
+                
+              
+              </box>
+              
+              
+          
+            
+            </geometry>
+            
+            
+          
+            
+            <pose>0 0 1.25 0 -0 0</pose>
+            
+            
+          
+            
+            <max_contacts>10</max_contacts>
+            
+            
+          
+            
+            <surface>
+              
+              
+            
+              
+              <contact>
+                
+                
+              
+                
+                <ode/>
+                
+                
+            
+              
+              </contact>
+              
+              
+            
+              
+              <bounce/>
+              
+              
+            
+              
+              <friction>
+                
+                
+              
+                
+                <ode/>
+                
+                
+            
+              
+              </friction>
+              
+              
+          
+            
+            </surface>
+            
+            
+        
+          
+          </collision>
+          
+          
+        
+          
+          <visual name="Wall_52_Visual">
+            
+            
+          
+            
+            <pose>0 0 1.25 0 -0 0</pose>
+            
+            
+          
+            
+            <geometry>
+              
+              
+            
+              
+              <box>
+                
+                
+              
+                
+                <!-- <size>SIZE</size> -->
+                
+                
+            
+                
+                <size>1.5 0.15 2.5</size>
+                
+              
+              </box>
+              
+              
+          
+            
+            </geometry>
+            
+            
+          
+            
+            <material>
+              
+              
+            
+              
+              <script>
+                
+                
+              
+                
+                <uri>file://media/materials/scripts/gazebo.material</uri>
+                
+                
+              
+                
+                <name>Gazebo/Grey</name>
+                
+                
+            
+              
+              </script>
+              
+              
+            
+              
+              <ambient>1 1 1 1</ambient>
+              
+              
+          
+            
+            </material>
+            
+            
+        
+          
+          </visual>
+          
+          
+        
+          
+          <!-- <pose >POSE</pose> -->
+          
+          
+        
+          
+          <self_collide>0</self_collide>
+          
+          
+        
+          
+          <kinematic>0</kinematic>
+          
+          
+        
+          
+          <gravity>1</gravity>
+          
+          
+      
+          
+          <pose>1.2 -20.25 0 0 0 0.0</pose>
           
         
         </link>
@@ -11268,7 +12050,7 @@
           
       
           
-          <pose>1.2 -20.25 0 0 0 0.0</pose>
+          <pose>0.45 -19.5 0 0 0 1.57079632679</pose>
           
         
         </link>
@@ -11280,208 +12062,6 @@
         
           
           <collision name="Wall_54_Collision">
-            
-            
-          
-            
-            <geometry>
-              
-              
-            
-              
-              <box>
-                
-                
-              
-                
-                <!-- <size>SIZE</size> -->
-                
-                
-            
-                
-                <size>1.5 0.15 2.5</size>
-                
-              
-              </box>
-              
-              
-          
-            
-            </geometry>
-            
-            
-          
-            
-            <pose>0 0 1.25 0 -0 0</pose>
-            
-            
-          
-            
-            <max_contacts>10</max_contacts>
-            
-            
-          
-            
-            <surface>
-              
-              
-            
-              
-              <contact>
-                
-                
-              
-                
-                <ode/>
-                
-                
-            
-              
-              </contact>
-              
-              
-            
-              
-              <bounce/>
-              
-              
-            
-              
-              <friction>
-                
-                
-              
-                
-                <ode/>
-                
-                
-            
-              
-              </friction>
-              
-              
-          
-            
-            </surface>
-            
-            
-        
-          
-          </collision>
-          
-          
-        
-          
-          <visual name="Wall_54_Visual">
-            
-            
-          
-            
-            <pose>0 0 1.25 0 -0 0</pose>
-            
-            
-          
-            
-            <geometry>
-              
-              
-            
-              
-              <box>
-                
-                
-              
-                
-                <!-- <size>SIZE</size> -->
-                
-                
-            
-                
-                <size>1.5 0.15 2.5</size>
-                
-              
-              </box>
-              
-              
-          
-            
-            </geometry>
-            
-            
-          
-            
-            <material>
-              
-              
-            
-              
-              <script>
-                
-                
-              
-                
-                <uri>file://media/materials/scripts/gazebo.material</uri>
-                
-                
-              
-                
-                <name>Gazebo/Grey</name>
-                
-                
-            
-              
-              </script>
-              
-              
-            
-              
-              <ambient>1 1 1 1</ambient>
-              
-              
-          
-            
-            </material>
-            
-            
-        
-          
-          </visual>
-          
-          
-        
-          
-          <!-- <pose >POSE</pose> -->
-          
-          
-        
-          
-          <self_collide>0</self_collide>
-          
-          
-        
-          
-          <kinematic>0</kinematic>
-          
-          
-        
-          
-          <gravity>1</gravity>
-          
-          
-      
-          
-          <pose>0.45 -19.5 0 0 0 1.57079632679</pose>
-          
-        
-        </link>
-        
-        
-        <link name="Wall_55">
-          
-          
-        
-          
-          <collision name="Wall_55_Collision">
             
             
           
@@ -11574,7 +12154,7 @@
           
         
           
-          <visual name="Wall_55_Visual">
+          <visual name="Wall_54_Visual">
             
             
           
@@ -11678,12 +12258,12 @@
         </link>
         
         
-        <link name="Wall_56">
+        <link name="Wall_55">
           
           
         
           
-          <collision name="Wall_56_Collision">
+          <collision name="Wall_55_Collision">
             
             
           
@@ -11776,7 +12356,7 @@
           
         
           
-          <visual name="Wall_56_Visual">
+          <visual name="Wall_55_Visual">
             
             
           
@@ -11880,12 +12460,12 @@
         </link>
         
         
-        <link name="Wall_57">
+        <link name="Wall_56">
           
           
         
           
-          <collision name="Wall_57_Collision">
+          <collision name="Wall_56_Collision">
             
             
           
@@ -11978,7 +12558,7 @@
           
         
           
-          <visual name="Wall_57_Visual">
+          <visual name="Wall_56_Visual">
             
             
           
@@ -12082,12 +12662,12 @@
         </link>
         
         
-        <link name="Wall_58">
+        <link name="Wall_57">
           
           
         
           
-          <collision name="Wall_58_Collision">
+          <collision name="Wall_57_Collision">
             
             
           
@@ -12180,7 +12760,7 @@
           
         
           
-          <visual name="Wall_58_Visual">
+          <visual name="Wall_57_Visual">
             
             
           
@@ -12284,12 +12864,12 @@
         </link>
         
         
-        <link name="Wall_59">
+        <link name="Wall_58">
           
           
         
           
-          <collision name="Wall_59_Collision">
+          <collision name="Wall_58_Collision">
             
             
           
@@ -12382,7 +12962,7 @@
           
         
           
-          <visual name="Wall_59_Visual">
+          <visual name="Wall_58_Visual">
             
             
           
@@ -12486,12 +13066,12 @@
         </link>
         
         
-        <link name="Wall_60">
+        <link name="Wall_59">
           
           
         
           
-          <collision name="Wall_60_Collision">
+          <collision name="Wall_59_Collision">
             
             
           
@@ -12584,7 +13164,7 @@
           
         
           
-          <visual name="Wall_60_Visual">
+          <visual name="Wall_59_Visual">
             
             
           
@@ -12688,12 +13268,12 @@
         </link>
         
         
-        <link name="Wall_61">
+        <link name="Wall_60">
           
           
         
           
-          <collision name="Wall_61_Collision">
+          <collision name="Wall_60_Collision">
             
             
           
@@ -12786,7 +13366,7 @@
           
         
           
-          <visual name="Wall_61_Visual">
+          <visual name="Wall_60_Visual">
             
             
           
@@ -12890,12 +13470,12 @@
         </link>
         
         
-        <link name="Wall_62">
+        <link name="Wall_61">
           
           
         
           
-          <collision name="Wall_62_Collision">
+          <collision name="Wall_61_Collision">
             
             
           
@@ -12988,7 +13568,7 @@
           
         
           
-          <visual name="Wall_62_Visual">
+          <visual name="Wall_61_Visual">
             
             
           
@@ -13092,12 +13672,12 @@
         </link>
         
         
-        <link name="Wall_63">
+        <link name="Wall_62">
           
           
         
           
-          <collision name="Wall_63_Collision">
+          <collision name="Wall_62_Collision">
             
             
           
@@ -13190,7 +13770,7 @@
           
         
           
-          <visual name="Wall_63_Visual">
+          <visual name="Wall_62_Visual">
             
             
           
@@ -13294,12 +13874,12 @@
         </link>
         
         
-        <link name="Wall_64">
+        <link name="Wall_63">
           
           
         
           
-          <collision name="Wall_64_Collision">
+          <collision name="Wall_63_Collision">
             
             
           
@@ -13392,7 +13972,7 @@
           
         
           
-          <visual name="Wall_64_Visual">
+          <visual name="Wall_63_Visual">
             
             
           
@@ -13496,12 +14076,12 @@
         </link>
         
         
-        <link name="Wall_65">
+        <link name="Wall_64">
           
           
         
           
-          <collision name="Wall_65_Collision">
+          <collision name="Wall_64_Collision">
             
             
           
@@ -13594,7 +14174,7 @@
           
         
           
-          <visual name="Wall_65_Visual">
+          <visual name="Wall_64_Visual">
             
             
           
@@ -13698,12 +14278,12 @@
         </link>
         
         
-        <link name="Wall_66">
+        <link name="Wall_65">
           
           
         
           
-          <collision name="Wall_66_Collision">
+          <collision name="Wall_65_Collision">
             
             
           
@@ -13796,7 +14376,7 @@
           
         
           
-          <visual name="Wall_66_Visual">
+          <visual name="Wall_65_Visual">
             
             
           
@@ -13900,12 +14480,12 @@
         </link>
         
         
-        <link name="Wall_67">
+        <link name="Wall_66">
           
           
         
           
-          <collision name="Wall_67_Collision">
+          <collision name="Wall_66_Collision">
             
             
           
@@ -13998,7 +14578,7 @@
           
         
           
-          <visual name="Wall_67_Visual">
+          <visual name="Wall_66_Visual">
             
             
           
@@ -14102,12 +14682,12 @@
         </link>
         
         
-        <link name="Wall_68">
+        <link name="Wall_67">
           
           
         
           
-          <collision name="Wall_68_Collision">
+          <collision name="Wall_67_Collision">
             
             
           
@@ -14200,7 +14780,7 @@
           
         
           
-          <visual name="Wall_68_Visual">
+          <visual name="Wall_67_Visual">
             
             
           
@@ -14304,12 +14884,12 @@
         </link>
         
         
-        <link name="Wall_69">
+        <link name="Wall_68">
           
           
         
           
-          <collision name="Wall_69_Collision">
+          <collision name="Wall_68_Collision">
             
             
           
@@ -14402,7 +14982,7 @@
           
         
           
-          <visual name="Wall_69_Visual">
+          <visual name="Wall_68_Visual">
             
             
           
@@ -14506,12 +15086,12 @@
         </link>
         
         
-        <link name="Wall_70">
+        <link name="Wall_69">
           
           
         
           
-          <collision name="Wall_70_Collision">
+          <collision name="Wall_69_Collision">
             
             
           
@@ -14604,7 +15184,7 @@
           
         
           
-          <visual name="Wall_70_Visual">
+          <visual name="Wall_69_Visual">
             
             
           
@@ -14708,12 +15288,12 @@
         </link>
         
         
-        <link name="Wall_71">
+        <link name="Wall_70">
           
           
         
           
-          <collision name="Wall_71_Collision">
+          <collision name="Wall_70_Collision">
             
             
           
@@ -14806,7 +15386,7 @@
           
         
           
-          <visual name="Wall_71_Visual">
+          <visual name="Wall_70_Visual">
             
             
           
@@ -14910,12 +15490,12 @@
         </link>
         
         
-        <link name="Wall_72">
+        <link name="Wall_71">
           
           
         
           
-          <collision name="Wall_72_Collision">
+          <collision name="Wall_71_Collision">
             
             
           
@@ -15008,7 +15588,7 @@
           
         
           
-          <visual name="Wall_72_Visual">
+          <visual name="Wall_71_Visual">
             
             
           
@@ -15112,12 +15692,12 @@
         </link>
         
         
-        <link name="Wall_73">
+        <link name="Wall_72">
           
           
         
           
-          <collision name="Wall_73_Collision">
+          <collision name="Wall_72_Collision">
             
             
           
@@ -15210,7 +15790,7 @@
           
         
           
-          <visual name="Wall_73_Visual">
+          <visual name="Wall_72_Visual">
             
             
           
@@ -15314,12 +15894,12 @@
         </link>
         
         
-        <link name="Wall_74">
+        <link name="Wall_73">
           
           
         
           
-          <collision name="Wall_74_Collision">
+          <collision name="Wall_73_Collision">
             
             
           
@@ -15412,7 +15992,7 @@
           
         
           
-          <visual name="Wall_74_Visual">
+          <visual name="Wall_73_Visual">
             
             
           
@@ -15516,12 +16096,12 @@
         </link>
         
         
-        <link name="Wall_75">
+        <link name="Wall_74">
           
           
         
           
-          <collision name="Wall_75_Collision">
+          <collision name="Wall_74_Collision">
             
             
           
@@ -15614,7 +16194,7 @@
           
         
           
-          <visual name="Wall_75_Visual">
+          <visual name="Wall_74_Visual">
             
             
           
@@ -15718,12 +16298,12 @@
         </link>
         
         
-        <link name="Wall_76">
+        <link name="Wall_75">
           
           
         
           
-          <collision name="Wall_76_Collision">
+          <collision name="Wall_75_Collision">
             
             
           
@@ -15816,7 +16396,7 @@
           
         
           
-          <visual name="Wall_76_Visual">
+          <visual name="Wall_75_Visual">
             
             
           
@@ -15920,12 +16500,12 @@
         </link>
         
         
-        <link name="Wall_77">
+        <link name="Wall_76">
           
           
         
           
-          <collision name="Wall_77_Collision">
+          <collision name="Wall_76_Collision">
             
             
           
@@ -16018,7 +16598,7 @@
           
         
           
-          <visual name="Wall_77_Visual">
+          <visual name="Wall_76_Visual">
             
             
           
@@ -16122,12 +16702,12 @@
         </link>
         
         
-        <link name="Wall_78">
+        <link name="Wall_77">
           
           
         
           
-          <collision name="Wall_78_Collision">
+          <collision name="Wall_77_Collision">
             
             
           
@@ -16220,7 +16800,7 @@
           
         
           
-          <visual name="Wall_78_Visual">
+          <visual name="Wall_77_Visual">
             
             
           
@@ -16327,628 +16907,1242 @@
       </model>
       
       
+      
+      
     
+      
+      
       
       <state world_name="default">
         
         
+        
+        
       
+        
+        
         
         <sim_time>169 900000000</sim_time>
         
         
+        
+        
       
+        
+        
         
         <real_time>183 677014821</real_time>
         
         
+        
+        
       
+        
+        
         
         <wall_time>1493662410 829795139</wall_time>
         
         
+        
+        
       
+        
+        
         
         <iterations>16990</iterations>
         
         
+        
+        
       
+        
+        
         
         <model name="ground_plane_0">
           
           
+          
+          
         
+          
+          
           
           <pose frame="">0.497681 0 0 0 -0 0</pose>
           
           
+          
+          
         
+          
+          
           
           <scale>1 1 1</scale>
           
           
+          
+          
         
+          
+          
           
           <link name="link">
             
             
+            
+            
           
+            
+            
             
             <pose frame="">0.497681 0 0 0 -0 0</pose>
             
             
+            
+            
           
+            
+            
             
             <velocity>0 0 0 0 -0 0</velocity>
             
             
+            
+            
           
+            
+            
             
             <acceleration>0 0 0 0 -0 0</acceleration>
             
             
+            
+            
           
+            
+            
             
             <wrench>0 0 0 0 -0 0</wrench>
             
             
+            
+            
         
+          
+          
           
           </link>
           
           
+          
+          
       
+        
+        
         
         </model>
         
         
+        
+        
       
         
         
         
     
+      
+      
       
       </state>
       
       
+      
+      
     
+      
+      
       
       <gui fullscreen="0">
         
         
+        
+        
       
+        
+        
         
         <camera name="user_camera">
           
           
+          
+          
         
+          
+          
           
           <pose frame="">7.7135 4.19639 57.9906 -0 1.5698 3.04015</pose>
           
           
+          
+          
         
+          
+          
           
           <view_controller>orbit</view_controller>
           
           
+          
+          
         
+          
+          
           
           <projection_type>perspective</projection_type>
           
           
+          
+          
       
+        
+        
         
         </camera>
         
         
+        
+        
     
+      
+      
       
       </gui>
       
       
+      
+      
     
+      
+      
       
       <gravity>0 0 -9.8</gravity>
       
       
+      
+      
     
+      
+      
       
       <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
       
       
+      
+      
     
+      
+      
       
       <atmosphere type="adiabatic"/>
       
       
+      
+      
     
+      
+      
       
       <spherical_coordinates>
         
         
+        
+        
       
+        
+        
         
         <surface_model>EARTH_WGS84</surface_model>
         
         
+        
+        
       
+        
+        
         
         <latitude_deg>0</latitude_deg>
         
         
+        
+        
       
+        
+        
         
         <longitude_deg>0</longitude_deg>
         
         
+        
+        
       
+        
+        
         
         <elevation>0</elevation>
         
         
+        
+        
       
+        
+        
         
         <heading_deg>0</heading_deg>
         
         
+        
+        
     
+      
+      
       
       </spherical_coordinates>
       
       
+      
+      
   
     
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+    
       <light name="light0" type="point">
-        <pose frame="">-30.75 9.5 2 0 0 0</pose>
+        <pose frame="">-21.75 9.5 2 0 0 0</pose>
         <diffuse>0.5 0.5 0.5 1</diffuse>
         <specular>0.1 0.1 0.1 1</specular>
         <attenuation>
-          <range>20</range>
+          <range>5</range>
           <constant>0.5</constant>
-          <linear>0.01</linear>
-          <quadratic>0.01</quadratic>
+          <linear>0.1</linear>
+          <quadratic>0.03</quadratic>
         </attenuation>
         <cast_shadows>0</cast_shadows>
         <direction>0 0 -1</direction>
       </light>
       <light name="light1" type="point">
-        <pose frame="">-26.5 9.5 2 0 0 0</pose>
+        <pose frame="">-11.0 9.5 2 0 0 0</pose>
         <diffuse>0.5 0.5 0.5 1</diffuse>
         <specular>0.1 0.1 0.1 1</specular>
         <attenuation>
-          <range>20</range>
+          <range>5</range>
           <constant>0.5</constant>
-          <linear>0.01</linear>
-          <quadratic>0.01</quadratic>
+          <linear>0.1</linear>
+          <quadratic>0.03</quadratic>
         </attenuation>
         <cast_shadows>0</cast_shadows>
         <direction>0 0 -1</direction>
       </light>
       <light name="light2" type="point">
-        <pose frame="">-17.25 9.5 2 0 0 0</pose>
+        <pose frame="">-5.75 4.75 2 0 0 0</pose>
         <diffuse>0.5 0.5 0.5 1</diffuse>
         <specular>0.1 0.1 0.1 1</specular>
         <attenuation>
-          <range>20</range>
+          <range>5</range>
           <constant>0.5</constant>
-          <linear>0.01</linear>
-          <quadratic>0.01</quadratic>
+          <linear>0.1</linear>
+          <quadratic>0.03</quadratic>
         </attenuation>
         <cast_shadows>0</cast_shadows>
         <direction>0 0 -1</direction>
       </light>
       <light name="light3" type="point">
-        <pose frame="">-5.75 9.5 2 0 0 0</pose>
+        <pose frame="">3.25 4.5 2 0 0 0</pose>
         <diffuse>0.5 0.5 0.5 1</diffuse>
         <specular>0.1 0.1 0.1 1</specular>
         <attenuation>
-          <range>20</range>
+          <range>5</range>
           <constant>0.5</constant>
-          <linear>0.01</linear>
-          <quadratic>0.01</quadratic>
+          <linear>0.1</linear>
+          <quadratic>0.03</quadratic>
         </attenuation>
         <cast_shadows>0</cast_shadows>
         <direction>0 0 -1</direction>
       </light>
       <light name="light4" type="point">
-        <pose frame="">3.25 9.5 2 0 0 0</pose>
+        <pose frame="">-26.5 4.75 2 0 0 0</pose>
         <diffuse>0.5 0.5 0.5 1</diffuse>
         <specular>0.1 0.1 0.1 1</specular>
         <attenuation>
-          <range>20</range>
+          <range>5</range>
           <constant>0.5</constant>
-          <linear>0.01</linear>
-          <quadratic>0.01</quadratic>
+          <linear>0.1</linear>
+          <quadratic>0.03</quadratic>
         </attenuation>
         <cast_shadows>0</cast_shadows>
         <direction>0 0 -1</direction>
       </light>
       <light name="light5" type="point">
-        <pose frame="">3.25 0.0 2 0 0 0</pose>
+        <pose frame="">-37.5 0.0 2 0 0 0</pose>
         <diffuse>0.5 0.5 0.5 1</diffuse>
         <specular>0.1 0.1 0.1 1</specular>
         <attenuation>
-          <range>20</range>
+          <range>5</range>
           <constant>0.5</constant>
-          <linear>0.01</linear>
-          <quadratic>0.01</quadratic>
+          <linear>0.1</linear>
+          <quadratic>0.03</quadratic>
         </attenuation>
         <cast_shadows>0</cast_shadows>
         <direction>0 0 -1</direction>
       </light>
       <light name="light6" type="point">
-        <pose frame="">0.0 0.0 2 0 0 0</pose>
+        <pose frame="">-31.75 0.0 2 0 0 0</pose>
         <diffuse>0.5 0.5 0.5 1</diffuse>
         <specular>0.1 0.1 0.1 1</specular>
         <attenuation>
-          <range>20</range>
+          <range>5</range>
           <constant>0.5</constant>
-          <linear>0.01</linear>
-          <quadratic>0.01</quadratic>
+          <linear>0.1</linear>
+          <quadratic>0.03</quadratic>
         </attenuation>
         <cast_shadows>0</cast_shadows>
         <direction>0 0 -1</direction>
       </light>
       <light name="light7" type="point">
-        <pose frame="">-5.75 0.0 2 0 0 0</pose>
+        <pose frame="">9.75 15.5 2 0 0 0</pose>
         <diffuse>0.5 0.5 0.5 1</diffuse>
         <specular>0.1 0.1 0.1 1</specular>
         <attenuation>
-          <range>20</range>
+          <range>5</range>
           <constant>0.5</constant>
-          <linear>0.01</linear>
-          <quadratic>0.01</quadratic>
+          <linear>0.1</linear>
+          <quadratic>0.03</quadratic>
         </attenuation>
         <cast_shadows>0</cast_shadows>
         <direction>0 0 -1</direction>
       </light>
       <light name="light8" type="point">
-        <pose frame="">-17.0 0.0 2 0 0 0</pose>
+        <pose frame="">21.25 15.5 2 0 0 0</pose>
         <diffuse>0.5 0.5 0.5 1</diffuse>
         <specular>0.1 0.1 0.1 1</specular>
         <attenuation>
-          <range>20</range>
+          <range>5</range>
           <constant>0.5</constant>
-          <linear>0.01</linear>
-          <quadratic>0.01</quadratic>
+          <linear>0.1</linear>
+          <quadratic>0.03</quadratic>
         </attenuation>
         <cast_shadows>0</cast_shadows>
         <direction>0 0 -1</direction>
       </light>
       <light name="light9" type="point">
-        <pose frame="">-26.5 0.0 2 0 0 0</pose>
+        <pose frame="">32.0 15.5 2 0 0 0</pose>
         <diffuse>0.5 0.5 0.5 1</diffuse>
         <specular>0.1 0.1 0.1 1</specular>
         <attenuation>
-          <range>20</range>
+          <range>5</range>
           <constant>0.5</constant>
-          <linear>0.01</linear>
-          <quadratic>0.01</quadratic>
+          <linear>0.1</linear>
+          <quadratic>0.03</quadratic>
         </attenuation>
         <cast_shadows>0</cast_shadows>
         <direction>0 0 -1</direction>
       </light>
       <light name="light10" type="point">
-        <pose frame="">-43.5 0.0 2 0 0 0</pose>
+        <pose frame="">43.0 15.5 2 0 0 0</pose>
         <diffuse>0.5 0.5 0.5 1</diffuse>
         <specular>0.1 0.1 0.1 1</specular>
         <attenuation>
-          <range>20</range>
+          <range>5</range>
           <constant>0.5</constant>
-          <linear>0.01</linear>
-          <quadratic>0.01</quadratic>
+          <linear>0.1</linear>
+          <quadratic>0.03</quadratic>
         </attenuation>
         <cast_shadows>0</cast_shadows>
         <direction>0 0 -1</direction>
       </light>
       <light name="light11" type="point">
-        <pose frame="">3.25 15.5 2 0 0 0</pose>
+        <pose frame="">48.0 11.75 2 0 0 0</pose>
         <diffuse>0.5 0.5 0.5 1</diffuse>
         <specular>0.1 0.1 0.1 1</specular>
         <attenuation>
-          <range>20</range>
+          <range>5</range>
           <constant>0.5</constant>
-          <linear>0.01</linear>
-          <quadratic>0.01</quadratic>
+          <linear>0.1</linear>
+          <quadratic>0.03</quadratic>
         </attenuation>
         <cast_shadows>0</cast_shadows>
         <direction>0 0 -1</direction>
       </light>
       <light name="light12" type="point">
-        <pose frame="">15.25 15.5 2 0 0 0</pose>
+        <pose frame="">48.0 6.75 2 0 0 0</pose>
         <diffuse>0.5 0.5 0.5 1</diffuse>
         <specular>0.1 0.1 0.1 1</specular>
         <attenuation>
-          <range>20</range>
+          <range>5</range>
           <constant>0.5</constant>
-          <linear>0.01</linear>
-          <quadratic>0.01</quadratic>
+          <linear>0.1</linear>
+          <quadratic>0.03</quadratic>
         </attenuation>
         <cast_shadows>0</cast_shadows>
         <direction>0 0 -1</direction>
       </light>
       <light name="light13" type="point">
-        <pose frame="">26.25 15.5 2 0 0 0</pose>
+        <pose frame="">48.0 3.0 2 0 0 0</pose>
         <diffuse>0.5 0.5 0.5 1</diffuse>
         <specular>0.1 0.1 0.1 1</specular>
         <attenuation>
-          <range>20</range>
+          <range>5</range>
           <constant>0.5</constant>
-          <linear>0.01</linear>
-          <quadratic>0.01</quadratic>
+          <linear>0.1</linear>
+          <quadratic>0.03</quadratic>
         </attenuation>
         <cast_shadows>0</cast_shadows>
         <direction>0 0 -1</direction>
       </light>
       <light name="light14" type="point">
-        <pose frame="">37.25 15.5 2 0 0 0</pose>
+        <pose frame="">0.0 -5.25 2 0 0 0</pose>
         <diffuse>0.5 0.5 0.5 1</diffuse>
         <specular>0.1 0.1 0.1 1</specular>
         <attenuation>
-          <range>20</range>
+          <range>5</range>
           <constant>0.5</constant>
-          <linear>0.01</linear>
-          <quadratic>0.01</quadratic>
+          <linear>0.1</linear>
+          <quadratic>0.03</quadratic>
         </attenuation>
         <cast_shadows>0</cast_shadows>
         <direction>0 0 -1</direction>
       </light>
       <light name="light15" type="point">
-        <pose frame="">48.0 15.5 2 0 0 0</pose>
+        <pose frame="">0.0 -10.25 2 0 0 0</pose>
         <diffuse>0.5 0.5 0.5 1</diffuse>
         <specular>0.1 0.1 0.1 1</specular>
         <attenuation>
-          <range>20</range>
+          <range>5</range>
           <constant>0.5</constant>
-          <linear>0.01</linear>
-          <quadratic>0.01</quadratic>
+          <linear>0.1</linear>
+          <quadratic>0.03</quadratic>
         </attenuation>
         <cast_shadows>0</cast_shadows>
         <direction>0 0 -1</direction>
       </light>
       <light name="light16" type="point">
-        <pose frame="">48.0 0.0 2 0 0 0</pose>
+        <pose frame="">0.0 -15.0 2 0 0 0</pose>
         <diffuse>0.5 0.5 0.5 1</diffuse>
         <specular>0.1 0.1 0.1 1</specular>
         <attenuation>
-          <range>20</range>
+          <range>5</range>
           <constant>0.5</constant>
-          <linear>0.01</linear>
-          <quadratic>0.01</quadratic>
+          <linear>0.1</linear>
+          <quadratic>0.03</quadratic>
         </attenuation>
         <cast_shadows>0</cast_shadows>
         <direction>0 0 -1</direction>
       </light>
       <light name="light17" type="point">
-        <pose frame="">45.0 -2.5 2 0 0 0</pose>
+        <pose frame="">4.5 -23.5 2 0 0 0</pose>
         <diffuse>0.5 0.5 0.5 1</diffuse>
         <specular>0.1 0.1 0.1 1</specular>
         <attenuation>
-          <range>20</range>
+          <range>5</range>
           <constant>0.5</constant>
-          <linear>0.01</linear>
-          <quadratic>0.01</quadratic>
+          <linear>0.1</linear>
+          <quadratic>0.03</quadratic>
         </attenuation>
         <cast_shadows>0</cast_shadows>
         <direction>0 0 -1</direction>
       </light>
       <light name="light18" type="point">
-        <pose frame="">37.25 11.25 2 0 0 0</pose>
+        <pose frame="">4.75 -29.25 2 0 0 0</pose>
         <diffuse>0.5 0.5 0.5 1</diffuse>
         <specular>0.1 0.1 0.1 1</specular>
         <attenuation>
-          <range>20</range>
+          <range>5</range>
           <constant>0.5</constant>
-          <linear>0.01</linear>
-          <quadratic>0.01</quadratic>
+          <linear>0.1</linear>
+          <quadratic>0.03</quadratic>
         </attenuation>
         <cast_shadows>0</cast_shadows>
         <direction>0 0 -1</direction>
       </light>
       <light name="light19" type="point">
-        <pose frame="">35.0 8.0 2 0 0 0</pose>
+        <pose frame="">-2.25 -24.0 2 0 0 0</pose>
         <diffuse>0.5 0.5 0.5 1</diffuse>
         <specular>0.1 0.1 0.1 1</specular>
         <attenuation>
-          <range>20</range>
+          <range>5</range>
           <constant>0.5</constant>
-          <linear>0.01</linear>
-          <quadratic>0.01</quadratic>
+          <linear>0.1</linear>
+          <quadratic>0.03</quadratic>
         </attenuation>
         <cast_shadows>0</cast_shadows>
         <direction>0 0 -1</direction>
       </light>
       <light name="light20" type="point">
-        <pose frame="">26.25 10.0 2 0 0 0</pose>
+        <pose frame="">-2.25 -29.5 2 0 0 0</pose>
         <diffuse>0.5 0.5 0.5 1</diffuse>
         <specular>0.1 0.1 0.1 1</specular>
         <attenuation>
-          <range>20</range>
+          <range>5</range>
           <constant>0.5</constant>
-          <linear>0.01</linear>
-          <quadratic>0.01</quadratic>
+          <linear>0.1</linear>
+          <quadratic>0.03</quadratic>
         </attenuation>
         <cast_shadows>0</cast_shadows>
         <direction>0 0 -1</direction>
       </light>
       <light name="light21" type="point">
-        <pose frame="">20.5 10.0 2 0 0 0</pose>
+        <pose frame="">-2.25 -33.75 2 0 0 0</pose>
         <diffuse>0.5 0.5 0.5 1</diffuse>
         <specular>0.1 0.1 0.1 1</specular>
         <attenuation>
-          <range>20</range>
+          <range>5</range>
           <constant>0.5</constant>
-          <linear>0.01</linear>
-          <quadratic>0.01</quadratic>
+          <linear>0.1</linear>
+          <quadratic>0.03</quadratic>
         </attenuation>
         <cast_shadows>0</cast_shadows>
         <direction>0 0 -1</direction>
       </light>
       <light name="light22" type="point">
-        <pose frame="">15.25 10.5 2 0 0 0</pose>
+        <pose frame="">-2.25 -43.0 2 0 0 0</pose>
         <diffuse>0.5 0.5 0.5 1</diffuse>
         <specular>0.1 0.1 0.1 1</specular>
         <attenuation>
-          <range>20</range>
+          <range>5</range>
           <constant>0.5</constant>
-          <linear>0.01</linear>
-          <quadratic>0.01</quadratic>
+          <linear>0.1</linear>
+          <quadratic>0.03</quadratic>
         </attenuation>
         <cast_shadows>0</cast_shadows>
         <direction>0 0 -1</direction>
       </light>
       <light name="light23" type="point">
-        <pose frame="">0.0 -19.0 2 0 0 0</pose>
+        <pose frame="">-11.25 0.0 2 0 0 0</pose>
         <diffuse>0.5 0.5 0.5 1</diffuse>
         <specular>0.1 0.1 0.1 1</specular>
         <attenuation>
-          <range>20</range>
+          <range>5</range>
           <constant>0.5</constant>
-          <linear>0.01</linear>
-          <quadratic>0.01</quadratic>
+          <linear>0.1</linear>
+          <quadratic>0.03</quadratic>
         </attenuation>
         <cast_shadows>0</cast_shadows>
         <direction>0 0 -1</direction>
       </light>
       <light name="light24" type="point">
-        <pose frame="">4.5 -19.0 2 0 0 0</pose>
+        <pose frame="">-21.25 0.0 2 0 0 0</pose>
         <diffuse>0.5 0.5 0.5 1</diffuse>
         <specular>0.1 0.1 0.1 1</specular>
         <attenuation>
-          <range>20</range>
+          <range>5</range>
           <constant>0.5</constant>
-          <linear>0.01</linear>
-          <quadratic>0.01</quadratic>
+          <linear>0.1</linear>
+          <quadratic>0.03</quadratic>
         </attenuation>
         <cast_shadows>0</cast_shadows>
         <direction>0 0 -1</direction>
       </light>
       <light name="light25" type="point">
-        <pose frame="">-2.25 -19.5 2 0 0 0</pose>
+        <pose frame="">-1.0 9.5 2 0 0 0</pose>
         <diffuse>0.5 0.5 0.5 1</diffuse>
         <specular>0.1 0.1 0.1 1</specular>
         <attenuation>
-          <range>20</range>
+          <range>5</range>
           <constant>0.5</constant>
-          <linear>0.01</linear>
-          <quadratic>0.01</quadratic>
+          <linear>0.1</linear>
+          <quadratic>0.03</quadratic>
         </attenuation>
         <cast_shadows>0</cast_shadows>
         <direction>0 0 -1</direction>
       </light>
       <light name="light26" type="point">
-        <pose frame="">4.75 -32.75 2 0 0 0</pose>
+        <pose frame="">-30.75 9.5 2 0 0 0</pose>
         <diffuse>0.5 0.5 0.5 1</diffuse>
         <specular>0.1 0.1 0.1 1</specular>
         <attenuation>
-          <range>20</range>
+          <range>5</range>
           <constant>0.5</constant>
-          <linear>0.01</linear>
-          <quadratic>0.01</quadratic>
+          <linear>0.1</linear>
+          <quadratic>0.03</quadratic>
         </attenuation>
         <cast_shadows>0</cast_shadows>
         <direction>0 0 -1</direction>
       </light>
       <light name="light27" type="point">
-        <pose frame="">1.75 -32.75 2 0 0 0</pose>
+        <pose frame="">-26.5 9.5 2 0 0 0</pose>
         <diffuse>0.5 0.5 0.5 1</diffuse>
         <specular>0.1 0.1 0.1 1</specular>
         <attenuation>
-          <range>20</range>
+          <range>5</range>
           <constant>0.5</constant>
-          <linear>0.01</linear>
-          <quadratic>0.01</quadratic>
+          <linear>0.1</linear>
+          <quadratic>0.03</quadratic>
         </attenuation>
         <cast_shadows>0</cast_shadows>
         <direction>0 0 -1</direction>
       </light>
       <light name="light28" type="point">
-        <pose frame="">1.75 -37.75 2 0 0 0</pose>
+        <pose frame="">-17.25 9.5 2 0 0 0</pose>
         <diffuse>0.5 0.5 0.5 1</diffuse>
         <specular>0.1 0.1 0.1 1</specular>
         <attenuation>
-          <range>20</range>
+          <range>5</range>
           <constant>0.5</constant>
-          <linear>0.01</linear>
-          <quadratic>0.01</quadratic>
+          <linear>0.1</linear>
+          <quadratic>0.03</quadratic>
         </attenuation>
         <cast_shadows>0</cast_shadows>
         <direction>0 0 -1</direction>
       </light>
       <light name="light29" type="point">
-        <pose frame="">-2.25 -37.75 2 0 0 0</pose>
+        <pose frame="">-5.75 9.5 2 0 0 0</pose>
         <diffuse>0.5 0.5 0.5 1</diffuse>
         <specular>0.1 0.1 0.1 1</specular>
         <attenuation>
-          <range>20</range>
+          <range>5</range>
           <constant>0.5</constant>
-          <linear>0.01</linear>
-          <quadratic>0.01</quadratic>
+          <linear>0.1</linear>
+          <quadratic>0.03</quadratic>
         </attenuation>
         <cast_shadows>0</cast_shadows>
         <direction>0 0 -1</direction>
       </light>
       <light name="light30" type="point">
-        <pose frame="">-2.25 -48.5 2 0 0 0</pose>
+        <pose frame="">3.25 9.5 2 0 0 0</pose>
         <diffuse>0.5 0.5 0.5 1</diffuse>
         <specular>0.1 0.1 0.1 1</specular>
         <attenuation>
-          <range>20</range>
+          <range>5</range>
           <constant>0.5</constant>
-          <linear>0.01</linear>
-          <quadratic>0.01</quadratic>
+          <linear>0.1</linear>
+          <quadratic>0.03</quadratic>
         </attenuation>
         <cast_shadows>0</cast_shadows>
         <direction>0 0 -1</direction>
       </light>
       <light name="light31" type="point">
-        <pose frame="">-0.25 -48.5 2 0 0 0</pose>
+        <pose frame="">3.25 0.0 2 0 0 0</pose>
         <diffuse>0.5 0.5 0.5 1</diffuse>
         <specular>0.1 0.1 0.1 1</specular>
         <attenuation>
-          <range>20</range>
+          <range>5</range>
           <constant>0.5</constant>
-          <linear>0.01</linear>
-          <quadratic>0.01</quadratic>
+          <linear>0.1</linear>
+          <quadratic>0.03</quadratic>
         </attenuation>
         <cast_shadows>0</cast_shadows>
         <direction>0 0 -1</direction>
       </light>
       <light name="light32" type="point">
-        <pose frame="">-0.25 -53.25 2 0 0 0</pose>
+        <pose frame="">0.0 0.0 2 0 0 0</pose>
         <diffuse>0.5 0.5 0.5 1</diffuse>
         <specular>0.1 0.1 0.1 1</specular>
         <attenuation>
-          <range>20</range>
+          <range>5</range>
           <constant>0.5</constant>
-          <linear>0.01</linear>
-          <quadratic>0.01</quadratic>
+          <linear>0.1</linear>
+          <quadratic>0.03</quadratic>
         </attenuation>
         <cast_shadows>0</cast_shadows>
         <direction>0 0 -1</direction>
       </light>
       <light name="light33" type="point">
-        <pose frame="">-3.0 -53.25 2 0 0 0</pose>
+        <pose frame="">-5.75 0.0 2 0 0 0</pose>
         <diffuse>0.5 0.5 0.5 1</diffuse>
         <specular>0.1 0.1 0.1 1</specular>
         <attenuation>
-          <range>20</range>
+          <range>5</range>
           <constant>0.5</constant>
-          <linear>0.01</linear>
-          <quadratic>0.01</quadratic>
+          <linear>0.1</linear>
+          <quadratic>0.03</quadratic>
         </attenuation>
         <cast_shadows>0</cast_shadows>
         <direction>0 0 -1</direction>
       </light>
       <light name="light34" type="point">
+        <pose frame="">-17.0 0.0 2 0 0 0</pose>
+        <diffuse>0.5 0.5 0.5 1</diffuse>
+        <specular>0.1 0.1 0.1 1</specular>
+        <attenuation>
+          <range>5</range>
+          <constant>0.5</constant>
+          <linear>0.1</linear>
+          <quadratic>0.03</quadratic>
+        </attenuation>
+        <cast_shadows>0</cast_shadows>
+        <direction>0 0 -1</direction>
+      </light>
+      <light name="light35" type="point">
+        <pose frame="">-26.5 0.0 2 0 0 0</pose>
+        <diffuse>0.5 0.5 0.5 1</diffuse>
+        <specular>0.1 0.1 0.1 1</specular>
+        <attenuation>
+          <range>5</range>
+          <constant>0.5</constant>
+          <linear>0.1</linear>
+          <quadratic>0.03</quadratic>
+        </attenuation>
+        <cast_shadows>0</cast_shadows>
+        <direction>0 0 -1</direction>
+      </light>
+      <light name="light36" type="point">
+        <pose frame="">-43.5 0.0 2 0 0 0</pose>
+        <diffuse>0.5 0.5 0.5 1</diffuse>
+        <specular>0.1 0.1 0.1 1</specular>
+        <attenuation>
+          <range>5</range>
+          <constant>0.5</constant>
+          <linear>0.1</linear>
+          <quadratic>0.03</quadratic>
+        </attenuation>
+        <cast_shadows>0</cast_shadows>
+        <direction>0 0 -1</direction>
+      </light>
+      <light name="light37" type="point">
+        <pose frame="">3.25 15.5 2 0 0 0</pose>
+        <diffuse>0.5 0.5 0.5 1</diffuse>
+        <specular>0.1 0.1 0.1 1</specular>
+        <attenuation>
+          <range>5</range>
+          <constant>0.5</constant>
+          <linear>0.1</linear>
+          <quadratic>0.03</quadratic>
+        </attenuation>
+        <cast_shadows>0</cast_shadows>
+        <direction>0 0 -1</direction>
+      </light>
+      <light name="light38" type="point">
+        <pose frame="">15.25 15.5 2 0 0 0</pose>
+        <diffuse>0.5 0.5 0.5 1</diffuse>
+        <specular>0.1 0.1 0.1 1</specular>
+        <attenuation>
+          <range>5</range>
+          <constant>0.5</constant>
+          <linear>0.1</linear>
+          <quadratic>0.03</quadratic>
+        </attenuation>
+        <cast_shadows>0</cast_shadows>
+        <direction>0 0 -1</direction>
+      </light>
+      <light name="light39" type="point">
+        <pose frame="">26.25 15.5 2 0 0 0</pose>
+        <diffuse>0.5 0.5 0.5 1</diffuse>
+        <specular>0.1 0.1 0.1 1</specular>
+        <attenuation>
+          <range>5</range>
+          <constant>0.5</constant>
+          <linear>0.1</linear>
+          <quadratic>0.03</quadratic>
+        </attenuation>
+        <cast_shadows>0</cast_shadows>
+        <direction>0 0 -1</direction>
+      </light>
+      <light name="light40" type="point">
+        <pose frame="">37.25 15.5 2 0 0 0</pose>
+        <diffuse>0.5 0.5 0.5 1</diffuse>
+        <specular>0.1 0.1 0.1 1</specular>
+        <attenuation>
+          <range>5</range>
+          <constant>0.5</constant>
+          <linear>0.1</linear>
+          <quadratic>0.03</quadratic>
+        </attenuation>
+        <cast_shadows>0</cast_shadows>
+        <direction>0 0 -1</direction>
+      </light>
+      <light name="light41" type="point">
+        <pose frame="">48.0 15.5 2 0 0 0</pose>
+        <diffuse>0.5 0.5 0.5 1</diffuse>
+        <specular>0.1 0.1 0.1 1</specular>
+        <attenuation>
+          <range>5</range>
+          <constant>0.5</constant>
+          <linear>0.1</linear>
+          <quadratic>0.03</quadratic>
+        </attenuation>
+        <cast_shadows>0</cast_shadows>
+        <direction>0 0 -1</direction>
+      </light>
+      <light name="light42" type="point">
+        <pose frame="">48.0 0.0 2 0 0 0</pose>
+        <diffuse>0.5 0.5 0.5 1</diffuse>
+        <specular>0.1 0.1 0.1 1</specular>
+        <attenuation>
+          <range>5</range>
+          <constant>0.5</constant>
+          <linear>0.1</linear>
+          <quadratic>0.03</quadratic>
+        </attenuation>
+        <cast_shadows>0</cast_shadows>
+        <direction>0 0 -1</direction>
+      </light>
+      <light name="light43" type="point">
+        <pose frame="">45.0 -2.5 2 0 0 0</pose>
+        <diffuse>0.5 0.5 0.5 1</diffuse>
+        <specular>0.1 0.1 0.1 1</specular>
+        <attenuation>
+          <range>5</range>
+          <constant>0.5</constant>
+          <linear>0.1</linear>
+          <quadratic>0.03</quadratic>
+        </attenuation>
+        <cast_shadows>0</cast_shadows>
+        <direction>0 0 -1</direction>
+      </light>
+      <light name="light44" type="point">
+        <pose frame="">37.25 11.25 2 0 0 0</pose>
+        <diffuse>0.5 0.5 0.5 1</diffuse>
+        <specular>0.1 0.1 0.1 1</specular>
+        <attenuation>
+          <range>5</range>
+          <constant>0.5</constant>
+          <linear>0.1</linear>
+          <quadratic>0.03</quadratic>
+        </attenuation>
+        <cast_shadows>0</cast_shadows>
+        <direction>0 0 -1</direction>
+      </light>
+      <light name="light45" type="point">
+        <pose frame="">35.0 8.0 2 0 0 0</pose>
+        <diffuse>0.5 0.5 0.5 1</diffuse>
+        <specular>0.1 0.1 0.1 1</specular>
+        <attenuation>
+          <range>5</range>
+          <constant>0.5</constant>
+          <linear>0.1</linear>
+          <quadratic>0.03</quadratic>
+        </attenuation>
+        <cast_shadows>0</cast_shadows>
+        <direction>0 0 -1</direction>
+      </light>
+      <light name="light46" type="point">
+        <pose frame="">26.25 10.0 2 0 0 0</pose>
+        <diffuse>0.5 0.5 0.5 1</diffuse>
+        <specular>0.1 0.1 0.1 1</specular>
+        <attenuation>
+          <range>5</range>
+          <constant>0.5</constant>
+          <linear>0.1</linear>
+          <quadratic>0.03</quadratic>
+        </attenuation>
+        <cast_shadows>0</cast_shadows>
+        <direction>0 0 -1</direction>
+      </light>
+      <light name="light47" type="point">
+        <pose frame="">20.5 10.0 2 0 0 0</pose>
+        <diffuse>0.5 0.5 0.5 1</diffuse>
+        <specular>0.1 0.1 0.1 1</specular>
+        <attenuation>
+          <range>5</range>
+          <constant>0.5</constant>
+          <linear>0.1</linear>
+          <quadratic>0.03</quadratic>
+        </attenuation>
+        <cast_shadows>0</cast_shadows>
+        <direction>0 0 -1</direction>
+      </light>
+      <light name="light48" type="point">
+        <pose frame="">15.25 10.5 2 0 0 0</pose>
+        <diffuse>0.5 0.5 0.5 1</diffuse>
+        <specular>0.1 0.1 0.1 1</specular>
+        <attenuation>
+          <range>5</range>
+          <constant>0.5</constant>
+          <linear>0.1</linear>
+          <quadratic>0.03</quadratic>
+        </attenuation>
+        <cast_shadows>0</cast_shadows>
+        <direction>0 0 -1</direction>
+      </light>
+      <light name="light49" type="point">
+        <pose frame="">0.0 -19.0 2 0 0 0</pose>
+        <diffuse>0.5 0.5 0.5 1</diffuse>
+        <specular>0.1 0.1 0.1 1</specular>
+        <attenuation>
+          <range>5</range>
+          <constant>0.5</constant>
+          <linear>0.1</linear>
+          <quadratic>0.03</quadratic>
+        </attenuation>
+        <cast_shadows>0</cast_shadows>
+        <direction>0 0 -1</direction>
+      </light>
+      <light name="light50" type="point">
+        <pose frame="">4.5 -19.0 2 0 0 0</pose>
+        <diffuse>0.5 0.5 0.5 1</diffuse>
+        <specular>0.1 0.1 0.1 1</specular>
+        <attenuation>
+          <range>5</range>
+          <constant>0.5</constant>
+          <linear>0.1</linear>
+          <quadratic>0.03</quadratic>
+        </attenuation>
+        <cast_shadows>0</cast_shadows>
+        <direction>0 0 -1</direction>
+      </light>
+      <light name="light51" type="point">
+        <pose frame="">-2.25 -19.5 2 0 0 0</pose>
+        <diffuse>0.5 0.5 0.5 1</diffuse>
+        <specular>0.1 0.1 0.1 1</specular>
+        <attenuation>
+          <range>5</range>
+          <constant>0.5</constant>
+          <linear>0.1</linear>
+          <quadratic>0.03</quadratic>
+        </attenuation>
+        <cast_shadows>0</cast_shadows>
+        <direction>0 0 -1</direction>
+      </light>
+      <light name="light52" type="point">
+        <pose frame="">4.75 -32.75 2 0 0 0</pose>
+        <diffuse>0.5 0.5 0.5 1</diffuse>
+        <specular>0.1 0.1 0.1 1</specular>
+        <attenuation>
+          <range>5</range>
+          <constant>0.5</constant>
+          <linear>0.1</linear>
+          <quadratic>0.03</quadratic>
+        </attenuation>
+        <cast_shadows>0</cast_shadows>
+        <direction>0 0 -1</direction>
+      </light>
+      <light name="light53" type="point">
+        <pose frame="">1.75 -32.75 2 0 0 0</pose>
+        <diffuse>0.5 0.5 0.5 1</diffuse>
+        <specular>0.1 0.1 0.1 1</specular>
+        <attenuation>
+          <range>5</range>
+          <constant>0.5</constant>
+          <linear>0.1</linear>
+          <quadratic>0.03</quadratic>
+        </attenuation>
+        <cast_shadows>0</cast_shadows>
+        <direction>0 0 -1</direction>
+      </light>
+      <light name="light54" type="point">
+        <pose frame="">1.75 -37.75 2 0 0 0</pose>
+        <diffuse>0.5 0.5 0.5 1</diffuse>
+        <specular>0.1 0.1 0.1 1</specular>
+        <attenuation>
+          <range>5</range>
+          <constant>0.5</constant>
+          <linear>0.1</linear>
+          <quadratic>0.03</quadratic>
+        </attenuation>
+        <cast_shadows>0</cast_shadows>
+        <direction>0 0 -1</direction>
+      </light>
+      <light name="light55" type="point">
+        <pose frame="">-2.25 -37.75 2 0 0 0</pose>
+        <diffuse>0.5 0.5 0.5 1</diffuse>
+        <specular>0.1 0.1 0.1 1</specular>
+        <attenuation>
+          <range>5</range>
+          <constant>0.5</constant>
+          <linear>0.1</linear>
+          <quadratic>0.03</quadratic>
+        </attenuation>
+        <cast_shadows>0</cast_shadows>
+        <direction>0 0 -1</direction>
+      </light>
+      <light name="light56" type="point">
+        <pose frame="">-2.25 -48.5 2 0 0 0</pose>
+        <diffuse>0.5 0.5 0.5 1</diffuse>
+        <specular>0.1 0.1 0.1 1</specular>
+        <attenuation>
+          <range>5</range>
+          <constant>0.5</constant>
+          <linear>0.1</linear>
+          <quadratic>0.03</quadratic>
+        </attenuation>
+        <cast_shadows>0</cast_shadows>
+        <direction>0 0 -1</direction>
+      </light>
+      <light name="light57" type="point">
+        <pose frame="">-0.25 -48.5 2 0 0 0</pose>
+        <diffuse>0.5 0.5 0.5 1</diffuse>
+        <specular>0.1 0.1 0.1 1</specular>
+        <attenuation>
+          <range>5</range>
+          <constant>0.5</constant>
+          <linear>0.1</linear>
+          <quadratic>0.03</quadratic>
+        </attenuation>
+        <cast_shadows>0</cast_shadows>
+        <direction>0 0 -1</direction>
+      </light>
+      <light name="light58" type="point">
+        <pose frame="">-0.25 -53.25 2 0 0 0</pose>
+        <diffuse>0.5 0.5 0.5 1</diffuse>
+        <specular>0.1 0.1 0.1 1</specular>
+        <attenuation>
+          <range>5</range>
+          <constant>0.5</constant>
+          <linear>0.1</linear>
+          <quadratic>0.03</quadratic>
+        </attenuation>
+        <cast_shadows>0</cast_shadows>
+        <direction>0 0 -1</direction>
+      </light>
+      <light name="light59" type="point">
+        <pose frame="">-3.0 -53.25 2 0 0 0</pose>
+        <diffuse>0.5 0.5 0.5 1</diffuse>
+        <specular>0.1 0.1 0.1 1</specular>
+        <attenuation>
+          <range>5</range>
+          <constant>0.5</constant>
+          <linear>0.1</linear>
+          <quadratic>0.03</quadratic>
+        </attenuation>
+        <cast_shadows>0</cast_shadows>
+        <direction>0 0 -1</direction>
+      </light>
+      <light name="light60" type="point">
         <pose frame="">-5.75 13.25 2 0 0 0</pose>
         <diffuse>0.5 0.5 0.5 1</diffuse>
         <specular>0.1 0.1 0.1 1</specular>
         <attenuation>
-          <range>20</range>
+          <range>5</range>
           <constant>0.5</constant>
-          <linear>0.01</linear>
-          <quadratic>0.01</quadratic>
+          <linear>0.1</linear>
+          <quadratic>0.03</quadratic>
         </attenuation>
         <cast_shadows>0</cast_shadows>
         <direction>0 0 -1</direction>
@@ -16956,6 +18150,10 @@
     </world>
     
     
+    
+    
 
+  
+  
   
   </sdf>
