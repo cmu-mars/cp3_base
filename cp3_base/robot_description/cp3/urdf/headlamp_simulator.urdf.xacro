@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<robot name="actuator_headlamp" xmlns:xacro="http://ros.org/wiki/xacro">
+	<xacro:macro name="turtlebot_headlamp_actuator_sim">
+		<gazebo>
+			<plugin name="turtlebot_headlamp_controller" filename="libgazebo_ros_headlamp.so"></plugin>
+		</gazebo>
+	</xacro:macro>
+	<turtlebot_headlamp_actuator_sim/>
+</robot>
