@@ -10,9 +10,9 @@ RUN . /opt/ros/kinetic/setup.sh && \
     catkin_make install
 
 # Install custom simulator libaries
-RUN wget -1 "https://acme.able.cs.cmu.edu/public/BRASS/p2/cp3-libs.tgz" && \
-    tar zxf cp3-libs.tgz install/lib && \
-    rm -f cp3-libs.tgz && \
+RUN wget -1 "https://acme.able.cs.cmu.edu/public/BRASS/p2/cp3-catkin-install.tgz" && \
+    tar zxf cp3-catkin-install.tgz install/ && \
+    rm -f cp3-catkin-install.tgz && \
     . install/setup.bash
 
 CMD ["/bin/bash"]
