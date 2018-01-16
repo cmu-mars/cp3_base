@@ -158,13 +158,13 @@ class MarkerManager:
         d = self.visible_markers.difference(in_range) # visbile but no longer in range
         a = in_range.difference(self.visible_markers) # in range but not visible
 
-        for m in d:
-            print("Will delete %s" %m.name)
-        for m in a:
-            print("Will add %s" %m.name)
+        # for m in d:
+        #     print("Will delete %s" %m.name)
+        # for m in a:
+        #     print("Will add %s" %m.name)
 
-        for m in d:
-            self.delete_marker(m)
+    #    for m in d:
+    #        self.delete_marker(m)
         for m in a:
             self.place_marker(m)
 
