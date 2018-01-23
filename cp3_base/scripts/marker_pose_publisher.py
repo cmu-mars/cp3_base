@@ -1,4 +1,5 @@
 #!/usr/bin/env python  
+from __future__ import print_function
 import roslib
 import rospy
 import math
@@ -6,6 +7,7 @@ import tf
 import transformations as tr
 import numpy
 from aruco_msgs.msg import MarkerArray,Marker
+from std_msgs.msg import UInt32MultiArray
 
 def process_markers(markers):
     global listener, br, marker_trans_mat
@@ -14,8 +16,9 @@ def process_markers(markers):
     num = 0
     t_latest = rospy.Time(0)
     for marker in markers.markers:
+        print("Seeing marker %s" %marker.id)
         marker_link = '/Marker' + str(marker.id) + "__link"
-        marker_id = "/marker" + str(marker.id)
+        marker_id = "/Marker" + str(marker.id)
         tw = listener.getLatestCommonTime(marker_link, 'world')
         to = listener.getLatestCommonTime(marker_id, 'odom')
         t = tw if tw > to else to
@@ -27,7 +30,7 @@ def process_markers(markers):
         w_mat = numpy.dot(tr.translation_matrix(trans_w), tr.quaternion_matrix(rot_w))
         t_o = tr.concatenate_matrices(tr.translation_matrix(trans_o), tr.quaternion_matrix(rot_o))
         # Need to do the transform equivalent to 0.25 0 0 0 0.5 -0.5 -0.5 0.5 on marker_id
-        t_o = tr.dot(t_o, marker_trans_mat);
+        #t_o = numpy.dot(t_o, marker_trans_mat);
         o_mat_i = tr.inverse_matrix(t_o)
         mat3 = numpy.dot(w_mat, o_mat_i)
         mat3 = numpy.inverse_matrix(mat3)
@@ -43,18 +46,110 @@ def process_markers(markers):
     rot = tr.quaternion_from_matrix(avg_mat)
     br.sendTransform(trans, rot, t_latest, "odom", "map")
 
+def list_markers(markers):
+    global listener, br, marker_trans_mat
+    if len(markers.data) == 0:
+        return
+    sum_mat = None
+    num = 0.0
+    t_latest = rospy.Time(0)
 
+    for marker in markers.data:
+        marker_link = "/Marker%s__link" %marker
+        marker_id = "/Marker%s" %marker
+
+        tw = listener.getLatestCommonTime(marker_link, 'world')
+        to = listener.getLatestCommonTime(marker_id, 'odom')
+
+        t = tw if tw > to else to
+        t_latest = t if t > t_latest else t_latest
+        (trans_w,rot_w) = listener.lookupTransform(marker_link, 'world', tw)
+        
+        (trans_o,rot_o) = listener.lookupTransform(marker_id, 'odom', to)
+
+        w_mat = numpy.dot(tr.translation_matrix(trans_w), tr.quaternion_matrix(rot_w))
+        t_o = numpy.dot(tr.translation_matrix(trans_o), tr.quaternion_matrix(rot_o))
+        #r_o = numpy.dot(tr.translation_matrix((0,0,0)), tr.quaternion_matrix((0.5, -0.5, -0.5, 0.5)))
+        # r_o = numpy.dot(tr.translation_matrix((0,0,0)), tr.quaternion_matrix((0, 0, 0, 1)))
+
+        #t_o = numpy.dot(r_o, t_o)
+#        t_o = numpy.dot(tr.quaternion_matrix([0.5, -0.5, -0.5, 0.5]), t_o)
+        # t_o = numpy.dot(t_o, marker_trans_mat)
+        o_mat_i = tr.inverse_matrix(t_o) # need odom wrt marker
+        mat3 = numpy.dot(w_mat, o_mat_i) # odom wrt world
+        mat3 = tr.inverse_matrix(mat3) # world wrt odom
+        num = num + 1
+
+        if sum_mat is None:
+            sum_mat = mat3
+        else:
+            sum_mat = sum_mat + mat3
+        break
+
+    avg_mat = sum_mat / num
+    r_o = numpy.dot(tr.translation_matrix((0,0,0)), tr.quaternion_matrix((0,0,0, 1)))
+
+    #avg_mat = numpy.dot(r_o, avg_mat)
+
+
+    trans = tr.translation_from_matrix(avg_mat)
+    rot = tr.quaternion_from_matrix(avg_mat)
+
+    br.sendTransform(trans, rot, t_latest, "odom", "map")
+    #br.sendTransform((0,0,0), (0,0,0,1), t_latest, "odom", "map")
+
+
+
+#         (trans_o,rot_o) = listener.lookupTransform(marker_id, 'camera_temp_link', to)
+#         (t_c_o, r_c_o) = listener.lookupTransform('camera_temp_link', 'odom', to)
+#         t_c = numpy.dot(tr.translation_matrix(t_c_o), tr.quaternion_matrix(r_c_o))
+
+#         t_r = numpy.dot(tr.translation_matrix((0,0,0)), tr.quaternion_matrix((0,-1,0,1)))
+
+
+#         w_mat = numpy.dot(tr.translation_matrix(trans_w), tr.quaternion_matrix(rot_w))
+#         t_o = numpy.dot(tr.translation_matrix(trans_o), tr.quaternion_matrix(rot_o))
+#         #r_o = numpy.dot(tr.translation_matrix((0,0,0)), tr.quaternion_matrix((0.5, -0.5, -0.5, 0.5)))
+#         # r_o = numpy.dot(tr.translation_matrix((0,0,0)), tr.quaternion_matrix((0, 0, 0, 1)))
+
+#         t_o = numpy.dot(t_o,t_c)
+
+#         #t_o = numpy.dot(r_o, t_o)
+# #        t_o = numpy.dot(tr.quaternion_matrix([0.5, -0.5, -0.5, 0.5]), t_o)
+#         # t_o = numpy.dot(t_o, marker_trans_mat)
+#         o_mat_i = tr.inverse_matrix(t_o)
+#         mat3 = numpy.dot(w_mat, o_mat_i)
+#        #mat3 = tr.inverse_matrix(mat3)
+#         num = num + 1
+
+#         if sum_mat is None:
+#             sum_mat = mat3
+#         else:
+#             sum_mat = sum_mat + mat3
+#         break
+
+#     avg_mat = sum_mat / num
+#     r_o = numpy.dot(tr.translation_matrix((0,0,0)), tr.quaternion_matrix((0,0,0,1)))
+
+#     avg_mat = numpy.dot(avg_mat, r_o)
+
+
+#     trans = tr.translation_from_matrix(avg_mat)
+#     rot = tr.quaternion_from_matrix(avg_mat)
+
+#     br.sendTransform(trans, rot, t_latest, "odom", "map")
 
 if __name__ == '__main__':
 
-    marker_trans_mat = numpy.dot(tr.translation_matrix([0.25, 0, 0]), tr.quaternion_matrix([0.5,-0.5,-0.5,0.5]))
-
+    marker_trans_mat = tr.concatenate_matrices(tr.translation_matrix([0, 0, 0]), tr.quaternion_matrix ([0.5,-0.5,-0.5,0.5])) #0.25,
+    tr.quaternion_matrix(tr.quaternion_from_euler(0,-math.pi/2,-math.pi/2))
     rospy.init_node('marker_pose_publisher')
 
     listener = tf.TransformListener()
     br = tf.TransformBroadcaster()
     rate = rospy.Rate(60.0)
 
-    rospy.Subscriber("aruco_marker_publisher/markers", MarkerArray, process_markers)
+    #rospy.Subscriber("aruco_marker_publisher/markers", MarkerArray, process_markers)
+    rospy.Subscriber("aruco_marker_publisher/markers_list", UInt32MultiArray, list_markers)
 
     rospy.spin()

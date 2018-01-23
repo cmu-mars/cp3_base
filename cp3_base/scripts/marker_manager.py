@@ -1,4 +1,4 @@
-#! /user/bin/env python
+#! /usr/bin/env python
 '''
 Because of memory issues with gazebo and the number of markers needed, this
 node tracks the location of the robot and adds the markers in a 5m radius of
@@ -55,7 +55,7 @@ class Marker:
         pose = Pose ()
         pose.position.x = x
         pose.position.y = y
-        pose.position.z = 0.75
+        pose.position.z = 0.25
         
         q = tf.quaternion_from_euler(0, 0, w)
             
@@ -81,9 +81,9 @@ class Marker:
         elif wall == "south":
             w = math.pi / 2;
         elif wall == "east":
-            w = math.pi
-        elif wall == "west":
             w = 0
+        elif wall == "west":
+            w = math.pi
         self.name = json["id"]
         self.construct(json["x"], json["y"], w, json["id"])
 
