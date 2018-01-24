@@ -1,0 +1,33 @@
+<launch>
+<!--
+	<node pkg="aruco_ros" type="single" name="aruco_single">
+    	<remap from="/camera_info" to="/camera/rgb/camera_info"/>
+    	<remap from="/image" to="/camera/rgb/image_raw"/>
+    	<param name="marker_size" value="0.5"/>
+    	<param name="marker_id" value="117"/>
+    	<param name="reference_frame" value="/camera_temp_link"/>
+    	<param name="marker_frame" value="/New_Marker117"/>
+    	<param name="camera_frame" value="/camera_temp_link"/>
+    </node>
+-->
+	<node pkg="aruco_ros" type="marker_publisher" name="aruco_marker_publisher">
+    	<remap from="/camera_info" to="/camera/rgb/camera_info"/>
+    	<remap from="/image" to="/camera/rgb/image_raw"/>
+    	<param name="marker_size" value="0.5"/>
+    	<param name="reference_frame" value="/camera_temp_link"/>
+    	<param name="camera_frame" value="/camera_temp_link"/>
+    </node>
+
+   <node pkg="cp3_base" type="marker_manager.py" name="marker_manager">
+      <param name="~marker_file" value="/home/vagrant/phase2/utils/markers.json"/>
+   </node>
+
+   <node pkg="cp3_base" type="marker_pose_publisher.py" name="marker_pose_publisher"/>
+
+<!--
+    <node pkg="tf" type="static_transform_publisher" name="fix_marker" args="0.25 0 0 0.5 -0.5 -0.5 0.5 New_Marker117 Marker117 100" />
+-->
+<!--
+    <node pkg="tf" type="static_transform_publisher" name="odom_world" args="0 0 0 0 0 0 1 gazebo_world odom 100" />
+-->
+</launch>

@@ -108,7 +108,7 @@
     <!--<arg name="debug" value="true"/>-->
   </include>
 
-  <arg name="urdf_file" default="$(find xacro)/xacro.py '$(find cp3_base)/robot_description/cp3/urdf/kobuki_hexagons_kinect$(arg kinect_mode)_lidar$(arg lidar_mode).urdf.xacro'" />
+  <arg name="urdf_file" default="$(find xacro)/xacro.py '$(find cp3_base)/robot_description/cp3/urdf/kobuki_hexagons_kinect.urdf.xacro'" />
   <param name="robot_description" command="$(arg urdf_file)" />
 
   <node name="spawn_turtlebot_model" pkg="gazebo_ros" type="spawn_model"
