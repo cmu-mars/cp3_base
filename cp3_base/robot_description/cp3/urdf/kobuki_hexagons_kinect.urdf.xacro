@@ -13,7 +13,7 @@
   <xacro:include filename="$(find cp3_base)/robot_description/cp3/urdf/power_simulator.urdf.xacro"/>
 
   <xacro:include filename="$(find cp3_base)/robot_description/cp3/urdf/turtlebot_gazebo.urdf.xacro"/>
-  <xacro:include filename="$(find turtlebot_description)/urdf/sensors/kinect.urdf.xacro"/>
+  <xacro:include filename="$(find cp3_base)/robot_description/cp3/urdf/kinect.urdf.xacro"/>
   <xacro:include filename="$(find cp3_base)/robot_description/cp3/urdf/hokuyo.urdf.xacro"/> 
 
 
