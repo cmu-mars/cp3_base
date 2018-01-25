@@ -22,13 +22,6 @@ RUN git clone https://github.com/cmu-mars/brass_gazebo_plugins.git \
 	cd src/brass_gazebo_plugins && \
 	git checkout "${BRASS_GZ_PLUGINS}"
 
-# Install custom simulator libaries
-RUN wget "http://acme.able.cs.cmu.edu/public/BRASS/p2/cp3-catkin-install.tgz" && \
-    cd install &&  \
-    tar zxf ../cp3-catkin-install.tgz  && \
-    cd ..  && \
-    rm -f cp3-catkin-install.tgz 
-
 RUN  . /opt/ros/kinetic/setup.sh && \
 	catkin_make
 
