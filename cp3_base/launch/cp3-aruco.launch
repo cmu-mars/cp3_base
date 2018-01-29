@@ -31,7 +31,11 @@
     <param name="publish_frequency" type="double" value="30.0"/>
   </node>
 
-  <include file="$(find gazebo2rviz)/launch/gazebo2tf.launch"/>
+  <node name="static_tf_pub_world_to_gazebo_world" pkg="tf2_ros" type="static_transform_publisher" args="0 0 0  0 0 0 1 world gazebo_world" />
+  <node name="gazebo2tf" pkg="gazebo2rviz" type="gazebo2tf_node.py" output="screen">
+    <param name="ignore_submodels_of" value="" type="str" />
+    <param name="include_only_models" value="Marker" type="str" />
+  </node>
 
   <node pkg="tf" type="static_transform_publisher" name="map_to_world" args="0 0 0 0 0 0 1 world map 100" /> 
 
@@ -66,10 +70,13 @@
     </node>
 
    <node pkg="cp3_base" type="marker_manager.py" name="marker_manager">
-      <param name="~marker_file" value="/home/vagrant/phase2/utils/markers.json"/>
+      <param name="~marker_file" value="$(find cp3_base)/maps/markers.json"/>
    </node>
 
-   <node pkg="cp3_base" type="marker_pose_publisher.py" name="marker_pose_publisher"/>
+   <node pkg="cp3_base" type="marker_pose_publisher.py" name="marker_pose_publisher">
+      <param name="~marker_file" value="$(find cp3_base)/maps/markers.json"/>
+   </node>
+
   <!-- Launch move base -->
   <!-- TODO: move to separate Docker container -->
   <include file="$(find turtlebot_navigation)/launch/includes/move_base.launch.xml">

@@ -4,14 +4,14 @@
       <author>Blender User</author>
       <authoring_tool>Blender 2.74.0 commit date:2015-03-31, commit time:13:39, hash:000dfc0</authoring_tool>
     </contributor>
-    <created>2018-01-16 10:55:25</created>
-    <modified>2018-01-16 10:55:25</modified>
+    <created>2018-01-25 16:32:17</created>
+    <modified>2018-01-25 16:32:17</modified>
     <unit meter="1" name="meter" />
     <up_axis>Z_UP</up_axis>
   </asset>
   <library_images>
     <image id="Marker7_png" name="Marker7_png">
-      <init_from>file:////home/vagrant/catkin_ws/src/cp3_base/models/marker7/materials/textures/marker7.png</init_from>
+      <init_from>file:////home/vagrant/catkin_ws/src/cp3_base/models//marker7/materials/textures/marker7.png</init_from>
     </image>
   </library_images>
   <library_effects>

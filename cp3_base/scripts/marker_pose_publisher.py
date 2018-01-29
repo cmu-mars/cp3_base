@@ -9,6 +9,11 @@ import numpy
 from aruco_msgs.msg import MarkerArray,Marker
 from std_msgs.msg import UInt32MultiArray
 
+import os
+import sys
+import json
+import argparse
+
 def process_markers(markers):
     global listener, br, marker_trans_mat
 
@@ -46,6 +51,42 @@ def process_markers(markers):
     rot = tr.quaternion_from_matrix(avg_mat)
     br.sendTransform(trans, rot, t_latest, "odom", "map")
 
+gazebo_world_pose = tr.identity_matrix()
+
+
+def getMarkerTFFromMap(m):
+    # This doesn't work
+    mid = "Marker%s" %m
+
+    marker = marker_dict[mid]
+    w_mat = None
+
+    if marker is not None:
+        t = [marker["x"], marker["y"], 0.25]
+        w = 0
+        if marker["wall"] == "north":
+            w = -math.pi / 2
+        elif marker["wall"] == "south":
+            w = math.pi / 2
+        elif marker["wall"] == "west":
+            w = math.pi
+
+        t = tr.translation_matrix((marker["x"], marker["y"], 0.25))
+        r = tr.quaternion_matrix(tr.quaternion_from_euler(0,0,w))
+        w_mat = tr.concatenate_matrices(t, r)
+
+    return (w_mat, None)
+
+
+def getWorldMarkerMatrixFromTF(m):
+    global listener
+    marker_link = "Marker%s__link" %m
+    tw = listener.getLatestCommonTime(marker_link, 'world')
+    (t,r) = listener.lookupTransform(marker_link, 'world', tw)
+    w_mat = numpy.dot(tr.translation_matrix(t), tr.quaternion_matrix(r))
+
+    return (w_mat, tw)
+
 def list_markers(markers):
     global listener, br, marker_trans_mat
     if len(markers.data) == 0:
@@ -55,19 +96,25 @@ def list_markers(markers):
     t_latest = rospy.Time(0)
 
     for marker in markers.data:
-        marker_link = "/Marker%s__link" %marker
         marker_id = "/Marker%s" %marker
 
-        tw = listener.getLatestCommonTime(marker_link, 'world')
         to = listener.getLatestCommonTime(marker_id, 'odom')
 
-        t = tw if tw > to else to
+        t = to
+        #(w_mat, tw) = getMarkerTFFromMap(marker)
+        (w_mat, tw) = getWorldMarkerMatrixFromTF(marker)
+
+        if w_mat is None:
+            return
+        if tw is not None:
+            t = tw if tw > to else to
+
         t_latest = t if t > t_latest else t_latest
-        (trans_w,rot_w) = listener.lookupTransform(marker_link, 'world', tw)
+
         
         (trans_o,rot_o) = listener.lookupTransform(marker_id, 'odom', to)
 
-        w_mat = numpy.dot(tr.translation_matrix(trans_w), tr.quaternion_matrix(rot_w))
+
         t_o = numpy.dot(tr.translation_matrix(trans_o), tr.quaternion_matrix(rot_o))
         #r_o = numpy.dot(tr.translation_matrix((0,0,0)), tr.quaternion_matrix((0.5, -0.5, -0.5, 0.5)))
         # r_o = numpy.dot(tr.translation_matrix((0,0,0)), tr.quaternion_matrix((0, 0, 0, 1)))
@@ -84,7 +131,6 @@ def list_markers(markers):
             sum_mat = mat3
         else:
             sum_mat = sum_mat + mat3
-        break
 
     avg_mat = sum_mat / num
     r_o = numpy.dot(tr.translation_matrix((0,0,0)), tr.quaternion_matrix((0,0,0, 1)))
@@ -139,11 +185,29 @@ def list_markers(markers):
 
 #     br.sendTransform(trans, rot, t_latest, "odom", "map")
 
+marker_dict = {}
+
 if __name__ == '__main__':
 
     marker_trans_mat = tr.concatenate_matrices(tr.translation_matrix([0, 0, 0]), tr.quaternion_matrix ([0.5,-0.5,-0.5,0.5])) #0.25,
     tr.quaternion_matrix(tr.quaternion_from_euler(0,-math.pi/2,-math.pi/2))
     rospy.init_node('marker_pose_publisher')
+
+    markerfile = None
+    try:
+        markerfile = rospy.get_param('~marker_file')
+    except KeyError:
+        parser = argparse.ArgumentParser()
+        parser.add_argument("marker_file", type=str, help='The marker file to read in markers')
+        args = parser.parse_args()
+        markerfile = args.marker_file
+
+    f = open(markerfile)
+    s = f.read()
+    markers = json.loads(s)
+
+    for m in markers:
+        marker_dict[m["id"]] = m
 
     listener = tf.TransformListener()
     br = tf.TransformBroadcaster()

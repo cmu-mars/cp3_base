@@ -5,7 +5,7 @@
       <visual name="visual">
         <geometry>
           <mesh>
-            <uri>file:////home/vagrant/catkin_ws/src/cp3_base/models/marker61/marker61/meshes/Marker61.dae</uri>
+            <uri>file:////home/vagrant/catkin_ws/src/cp3_base/models//marker61/marker61/meshes/Marker61.dae</uri>
           </mesh>
         </geometry>
       </visual>
