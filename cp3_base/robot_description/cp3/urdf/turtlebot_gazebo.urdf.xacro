@@ -7,7 +7,7 @@
         <always_on>true</always_on>
         <update_rate>20.0</update_rate>
         <camera>
-          <horizontal_fov>${120.0*M_PI/180.0}</horizontal_fov>
+          <horizontal_fov>${140.0*M_PI/180.0}</horizontal_fov>
           <image>
             <format>B8G8R8</format>
             <width>1280</width>
@@ -71,6 +71,40 @@
           <mode>0</mode>
           <topicName>/scan</topicName>
           <frameName>base_laser_link</frameName>
+        </plugin>
+      </sensor>
+    </gazebo>
+  </xacro:macro>
+  <xacro:macro name="camera360">
+    <gazebo reference="camera360_link">
+      <sensor type="camera" name="camera360">
+        <update_rate>30.0</update_rate>
+        <camera name="camera360">
+          <horizontal_fov>${140.0*M_PI/180.0}</horizontal_fov>
+          <image>
+            <format>B8G8R8</format>
+            <width>1280</width> <!-- 3840 -->
+            <height>480</height>
+          </image>
+          <clip>
+            <near>0.05</near>
+            <far>8.0</far>
+          </clip>
+        </camera>
+
+        <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+          <alwaysOn>true</alwaysOn>
+          <updateRate>10.0</updateRate>
+          <cameraName>camera360</cameraName>
+          <imageTopicName>image_raw</imageTopicName>
+          <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+          <frameName>camera360_link</frameName>
+          <hackBaseline>0.1</hackBaseline>
+          <distortion_k1>0.0</distortion_k1>
+          <distortion_k2>0.0</distortion_k2>
+          <distortion_k3>0.0</distortion_k3>
+          <distortion_t1>0.0</distortion_t1>
+          <distortion_t2>0.0</distortion_t2>
         </plugin>
       </sensor>
     </gazebo>

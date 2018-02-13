@@ -11,7 +11,7 @@
   </asset>
   <library_images>
     <image id="Marker1_png" name="Marker1_png">
-      <init_from>file:////home/vagrant/catkin_ws/src/cp3_base/models//marker1/materials/textures/marker1.png</init_from>
+      <init_from>file:////home/vagrant/catkin_ws/src/cp3_base/models//marker460/materials/textures/marker460.png</init_from>
     </image>
   </library_images>
   <library_effects>

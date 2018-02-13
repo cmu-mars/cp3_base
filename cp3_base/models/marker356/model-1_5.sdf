@@ -1,0 +1,14 @@
+<sdf version="1.5">
+  <model name="Marker356">
+    <static>true</static>
+    <link name="link">
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <uri>file:////home/vagrant/catkin_ws/src/cp3_base/models//marker356/marker356/meshes/Marker356.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+  </model>
+</sdf>

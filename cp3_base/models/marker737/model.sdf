@@ -1,0 +1,14 @@
+<sdf version="1.6">
+  <model name="Marker737">
+    <static>true</static>
+    <link name="link">
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <uri>file:////home/vagrant/catkin_ws/src/cp3_base/models//marker737/marker737/meshes/Marker737.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+  </model>
+</sdf>

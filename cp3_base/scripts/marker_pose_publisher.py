@@ -1,5 +1,5 @@
 #!/usr/bin/env python  
-from __future__ import print_function
+from __future__ import print_function, with_statement
 import roslib
 import rospy
 import math
@@ -13,6 +13,11 @@ import os
 import sys
 import json
 import argparse
+from threading import *
+
+lock = Lock()
+
+global_markers = set()
 
 def process_markers(markers):
     global listener, br, marker_trans_mat
@@ -81,68 +86,88 @@ def getMarkerTFFromMap(m):
 def getWorldMarkerMatrixFromTF(m):
     global listener
     marker_link = "Marker%s__link" %m
-    tw = listener.getLatestCommonTime(marker_link, 'world')
-    (t,r) = listener.lookupTransform(marker_link, 'world', tw)
-    w_mat = numpy.dot(tr.translation_matrix(t), tr.quaternion_matrix(r))
-
+    try:
+        tw = listener.getLatestCommonTime(marker_link, 'world')
+        (t,r) = listener.lookupTransform(marker_link, 'world', tw)
+        w_mat = numpy.dot(tr.translation_matrix(t), tr.quaternion_matrix(r))
+    except e:
+        return (None, None)
     return (w_mat, tw)
 
 def list_markers(markers):
-    global listener, br, marker_trans_mat
+    global listener, br, marker_trans_mat, global_markers
     if len(markers.data) == 0:
         return
+    with lock:
+        global_markers |= set(markers.data)
+
+def publish_marker_transforms():
+    global global_markers
     sum_mat = None
     num = 0.0
     t_latest = rospy.Time(0)
+    with lock:
 
-    for marker in markers.data:
-        marker_id = "/Marker%s" %marker
-
-        to = listener.getLatestCommonTime(marker_id, 'odom')
-
-        t = to
-        #(w_mat, tw) = getMarkerTFFromMap(marker)
-        (w_mat, tw) = getWorldMarkerMatrixFromTF(marker)
-
-        if w_mat is None:
+        if len(global_markers) == 0:
+            rospy.loginfo("There are no markers to process")
             return
-        if tw is not None:
-            t = tw if tw > to else to
 
-        t_latest = t if t > t_latest else t_latest
+        for marker in global_markers:
+            if marker != 658:
+                continue
+            marker_id = "/Marker%s" %marker
 
-        
-        (trans_o,rot_o) = listener.lookupTransform(marker_id, 'odom', to)
+            to = listener.getLatestCommonTime(marker_id, 'odom')
+
+            t = to
+            #(w_mat, tw) = getMarkerTFFromMap(marker)
+            (w_mat, tw) = getWorldMarkerMatrixFromTF(marker)
+
+            if w_mat is None:
+                continue
+            if tw is not None:
+                t = tw if tw > to else to
+
+            t_latest = t if t > t_latest else t_latest
+
+            
+            (trans_o,rot_o) = listener.lookupTransform(marker_id, 'odom', to)
 
 
-        t_o = numpy.dot(tr.translation_matrix(trans_o), tr.quaternion_matrix(rot_o))
-        #r_o = numpy.dot(tr.translation_matrix((0,0,0)), tr.quaternion_matrix((0.5, -0.5, -0.5, 0.5)))
-        # r_o = numpy.dot(tr.translation_matrix((0,0,0)), tr.quaternion_matrix((0, 0, 0, 1)))
+            t_o = numpy.dot(tr.translation_matrix(trans_o), tr.quaternion_matrix(rot_o))
 
-        #t_o = numpy.dot(r_o, t_o)
-#        t_o = numpy.dot(tr.quaternion_matrix([0.5, -0.5, -0.5, 0.5]), t_o)
-        # t_o = numpy.dot(t_o, marker_trans_mat)
-        o_mat_i = tr.inverse_matrix(t_o) # need odom wrt marker
-        mat3 = numpy.dot(w_mat, o_mat_i) # odom wrt world
-        mat3 = tr.inverse_matrix(mat3) # world wrt odom
-        num = num + 1
+            o_mat_i = tr.inverse_matrix(t_o) # need odom wrt marker
+            mat3 = numpy.dot(w_mat, o_mat_i) # odom wrt world
+            mat3 = tr.inverse_matrix(mat3) # world wrt odom
+            num = num + 1
 
+            if sum_mat is None:
+                sum_mat = mat3
+                break
+            else:
+                sum_mat = sum_mat + mat3
         if sum_mat is None:
-            sum_mat = mat3
-        else:
-            sum_mat = sum_mat + mat3
+            return
+        avg_mat = sum_mat / num
+        r_o = numpy.dot(tr.translation_matrix((0,0,0)), tr.quaternion_matrix((0,0,0, 1)))
 
-    avg_mat = sum_mat / num
-    r_o = numpy.dot(tr.translation_matrix((0,0,0)), tr.quaternion_matrix((0,0,0, 1)))
-
-    #avg_mat = numpy.dot(r_o, avg_mat)
+        #avg_mat = numpy.dot(r_o, avg_mat)
 
 
-    trans = tr.translation_from_matrix(avg_mat)
-    rot = tr.quaternion_from_matrix(avg_mat)
+        trans = tr.translation_from_matrix(avg_mat)
+        rot = tr.quaternion_from_matrix(avg_mat)
 
-    br.sendTransform(trans, rot, t_latest, "odom", "map")
+        br.sendTransform(trans, rot, t_latest, "odom", "map")
+        global_markers.clear()
+
+
     #br.sendTransform((0,0,0), (0,0,0,1), t_latest, "odom", "map")
+
+def thread_main():
+    rate = rospy.Rate(60)
+    while True:
+        publish_marker_transforms()
+        rate.sleep()
 
 
 
@@ -190,7 +215,7 @@ marker_dict = {}
 if __name__ == '__main__':
 
     marker_trans_mat = tr.concatenate_matrices(tr.translation_matrix([0, 0, 0]), tr.quaternion_matrix ([0.5,-0.5,-0.5,0.5])) #0.25,
-    tr.quaternion_matrix(tr.quaternion_from_euler(0,-math.pi/2,-math.pi/2))
+    
     rospy.init_node('marker_pose_publisher')
 
     markerfile = None
@@ -201,6 +226,10 @@ if __name__ == '__main__':
         parser.add_argument("marker_file", type=str, help='The marker file to read in markers')
         args = parser.parse_args()
         markerfile = args.marker_file
+
+    if not os.path.isfile(markerfile):
+        print("The marker file '%s' does not exist" %markerfile)
+        sys.exit()
 
     f = open(markerfile)
     s = f.read()
@@ -214,6 +243,11 @@ if __name__ == '__main__':
     rate = rospy.Rate(60.0)
 
     #rospy.Subscriber("aruco_marker_publisher/markers", MarkerArray, process_markers)
-    rospy.Subscriber("aruco_marker_publisher/markers_list", UInt32MultiArray, list_markers)
+    rospy.Subscriber("aruco_marker_publisher_front/markers_list", UInt32MultiArray, list_markers)
+    rospy.Subscriber("aruco_marker_publisher_back/markers_list", UInt32MultiArray, list_markers)
+    rospy.loginfo("Marker Pose Publisher waiting for info")
+
+    marker_thread = Thread(target=thread_main)
+    marker_thread.start()
 
     rospy.spin()

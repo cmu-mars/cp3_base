@@ -5,5 +5,5 @@
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
   <!-- General -->
   <xacro:include filename="$(find turtlebot_description)/urdf/common_properties.urdf.xacro"/>
-  <xacro:include filename="$(find turtlebot_description)/urdf/turtlebot_properties.urdf.xacro"/>
+  <xacro:include filename="$(find cp3_base)/robot_description/cp3/urdf/turtlebot_properties.urdf.xacro"/>
 </robot>
