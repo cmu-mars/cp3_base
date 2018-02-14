@@ -113,8 +113,7 @@ def publish_marker_transforms():
             return
 
         for marker in global_markers:
-            if marker != 658:
-                continue
+            
             marker_id = "/Marker%s" %marker
 
             to = listener.getLatestCommonTime(marker_id, 'odom')
@@ -137,19 +136,19 @@ def publish_marker_transforms():
             t_o = numpy.dot(tr.translation_matrix(trans_o), tr.quaternion_matrix(rot_o))
 
             o_mat_i = tr.inverse_matrix(t_o) # need odom wrt marker
-            mat3 = numpy.dot(w_mat, o_mat_i) # odom wrt world
+            mat3 = numpy.dot(o_mat_i, w_mat) # odom wrt world
             mat3 = tr.inverse_matrix(mat3) # world wrt odom
             num = num + 1
 
             if sum_mat is None:
                 sum_mat = mat3
-                break
+                
             else:
                 sum_mat = sum_mat + mat3
         if sum_mat is None:
             return
         avg_mat = sum_mat / num
-        r_o = numpy.dot(tr.translation_matrix((0,0,0)), tr.quaternion_matrix((0,0,0, 1)))
+        #r_o = numpy.dot(tr.translation_matrix((0,0,0)), tr.quaternion_matrix((0,0,0, 1)))
 
         #avg_mat = numpy.dot(r_o, avg_mat)
 
@@ -164,7 +163,7 @@ def publish_marker_transforms():
     #br.sendTransform((0,0,0), (0,0,0,1), t_latest, "odom", "map")
 
 def thread_main():
-    rate = rospy.Rate(60)
+    rate = rospy.Rate(10)
     while True:
         publish_marker_transforms()
         rate.sleep()
