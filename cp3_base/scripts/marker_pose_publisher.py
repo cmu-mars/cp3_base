@@ -168,46 +168,81 @@ def thread_main():
         publish_marker_transforms()
         rate.sleep()
 
+front_transform = {"transform" : None, "time" : None}
+back_transform = {"transform" : None, "time" : None}
+
+def list_markers_gen(transform):
+    def process_marker_transform(markers):
+        sum_mat = None
+        num = 0.0
+        t_latest = rospy.Time(0)
+        for marker in markers.data:
+            marker_id = "/Marker%s" %marker
+
+            to = listener.getLatestCommonTime(marker_id, 'odom')
+
+            t = to
+            #(w_mat, tw) = getMarkerTFFromMap(marker)
+            (w_mat, tw) = getWorldMarkerMatrixFromTF(marker)
+
+            if w_mat is None:
+                continue
+            if tw is not None:
+                t = tw if tw > to else to
+
+            t_latest = t if t > t_latest else t_latest
+
+            
+            (trans_o,rot_o) = listener.lookupTransform(marker_id, 'odom', to)
 
 
-#         (trans_o,rot_o) = listener.lookupTransform(marker_id, 'camera_temp_link', to)
-#         (t_c_o, r_c_o) = listener.lookupTransform('camera_temp_link', 'odom', to)
-#         t_c = numpy.dot(tr.translation_matrix(t_c_o), tr.quaternion_matrix(r_c_o))
+            t_o = numpy.dot(tr.translation_matrix(trans_o), tr.quaternion_matrix(rot_o))
 
-#         t_r = numpy.dot(tr.translation_matrix((0,0,0)), tr.quaternion_matrix((0,-1,0,1)))
+            o_mat_i = tr.inverse_matrix(t_o) # need odom wrt marker
+            mat3 = numpy.dot(o_mat_i, w_mat) # odom wrt world
+            mat3 = tr.inverse_matrix(mat3) # world wrt odom
+            num = num + 1
 
+            if sum_mat is None:
+                sum_mat = mat3
+                
+            else:
+                sum_mat = sum_mat + mat3
+        if sum_mat is None:
+            return
+        avg_mat = sum_mat / num
 
-#         w_mat = numpy.dot(tr.translation_matrix(trans_w), tr.quaternion_matrix(rot_w))
-#         t_o = numpy.dot(tr.translation_matrix(trans_o), tr.quaternion_matrix(rot_o))
-#         #r_o = numpy.dot(tr.translation_matrix((0,0,0)), tr.quaternion_matrix((0.5, -0.5, -0.5, 0.5)))
-#         # r_o = numpy.dot(tr.translation_matrix((0,0,0)), tr.quaternion_matrix((0, 0, 0, 1)))
+        transform["transform"] = avg_mat;
+        transform["time"] = t_latest;
+    return process_marker_transform;
 
-#         t_o = numpy.dot(t_o,t_c)
+published_transform = None
 
-#         #t_o = numpy.dot(r_o, t_o)
-# #        t_o = numpy.dot(tr.quaternion_matrix([0.5, -0.5, -0.5, 0.5]), t_o)
-#         # t_o = numpy.dot(t_o, marker_trans_mat)
-#         o_mat_i = tr.inverse_matrix(t_o)
-#         mat3 = numpy.dot(w_mat, o_mat_i)
-#        #mat3 = tr.inverse_matrix(mat3)
-#         num = num + 1
-
-#         if sum_mat is None:
-#             sum_mat = mat3
-#         else:
-#             sum_mat = sum_mat + mat3
-#         break
-
-#     avg_mat = sum_mat / num
-#     r_o = numpy.dot(tr.translation_matrix((0,0,0)), tr.quaternion_matrix((0,0,0,1)))
-
-#     avg_mat = numpy.dot(avg_mat, r_o)
-
-
-#     trans = tr.translation_from_matrix(avg_mat)
-#     rot = tr.quaternion_from_matrix(avg_mat)
-
-#     br.sendTransform(trans, rot, t_latest, "odom", "map")
+def back_front_thread():
+    rate = rospy.Rate(10)
+    while True:
+        time = rospy.Time.now()
+        num = 0
+        sum_mat = None
+        #print("Time diff = %s" %(str(time.to_sec() - front_transform["time"].to_sec()) if front_transform["time"] is not None else "??"))
+        if front_transform["transform"] is not None and time.to_sec() - front_transform["time"].to_sec() < 1:
+            sum_mat = front_transform["transform"]
+            num = 1.0
+        if back_transform["transform"] is not None and time.to_sec() - back_transform["time"].to_sec() < 1:
+            sum_mat = back_transform["transform"] if sum_mat is None else sum_mat + back_transform["transform"]
+            num = num + 1.0
+        if num > 0:
+            transform = sum_mat / num
+            published_transform = transform
+            trans = tr.translation_from_matrix(transform)
+            rot = tr.quaternion_from_matrix(transform)
+            br.sendTransform(trans, rot, time, "odom", "map")
+        elif published_transform is not None:
+            transform = published_transform
+            trans = tr.translation_from_matrix(transform)
+            rot = tr.quaternion_from_matrix(transform)
+            br.sendTransform(trans, rot, time, "odom", "map")
+        rate.sleep()
 
 marker_dict = {}
 
@@ -242,11 +277,14 @@ if __name__ == '__main__':
     rate = rospy.Rate(60.0)
 
     #rospy.Subscriber("aruco_marker_publisher/markers", MarkerArray, process_markers)
-    rospy.Subscriber("aruco_marker_publisher_front/markers_list", UInt32MultiArray, list_markers)
-    rospy.Subscriber("aruco_marker_publisher_back/markers_list", UInt32MultiArray, list_markers)
+    #rospy.Subscriber("aruco_marker_publisher_front/markers_list", UInt32MultiArray, list_markers)
+    #rospy.Subscriber("aruco_marker_publisher_back/markers_list", UInt32MultiArray, list_markers)
+    rospy.Subscriber("aruco_marker_publisher_front/markers_list", UInt32MultiArray, list_markers_gen(front_transform))
+    rospy.Subscriber("aruco_marker_publisher_back/markers_list", UInt32MultiArray, list_markers_gen(back_transform))
     rospy.loginfo("Marker Pose Publisher waiting for info")
 
-    marker_thread = Thread(target=thread_main)
+    #marker_thread = Thread(target=thread_main)
+    marker_thread = Thread(target=back_front_thread)
     marker_thread.start()
 
     rospy.spin()
