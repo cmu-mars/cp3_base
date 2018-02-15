@@ -90,7 +90,7 @@ def getWorldMarkerMatrixFromTF(m):
         tw = listener.getLatestCommonTime(marker_link, 'world')
         (t,r) = listener.lookupTransform(marker_link, 'world', tw)
         w_mat = numpy.dot(tr.translation_matrix(t), tr.quaternion_matrix(r))
-    except e:
+    except:
         return (None, None)
     return (w_mat, tw)
 
@@ -219,6 +219,7 @@ def list_markers_gen(transform):
 published_transform = None
 
 def back_front_thread():
+    global published_transform
     rate = rospy.Rate(10)
     while True:
         time = rospy.Time.now()
