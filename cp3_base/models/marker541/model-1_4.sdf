@@ -1,0 +1,14 @@
+<sdf version="1.4">
+  <model name="Marker541">
+    <static>true</static>
+    <link name="link">
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <uri>file:////home/vagrant/catkin_ws/src/cp3_base/models//marker541/marker541/meshes/Marker541.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+  </model>
+</sdf>
