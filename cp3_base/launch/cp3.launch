@@ -1,9 +1,4 @@
 <launch>
-  <arg name="map_file" value="$(find cp3_base)/maps/cp3.yaml"/>
-  <arg name="3d_sensor" value="kinect"/>
-    <arg name="kinect_mode" value="1"/>
-    <arg name="lidar_mode" value="0"/>
-  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)"/>
 
   <arg name="initial_pose_x" default="0.0"/>
     <arg name="initial_pose_y" default="0.0"/>
@@ -55,77 +50,7 @@
       <param name="initial_pose_a"            value="$(arg initial_pose_a)"/>
       <remap from="scan"                      to="$(arg scan_topic)"/>
     </node>
-
-
-  <node pkg="nodelet" type="nodelet" name="navigation_velocity_smoother" args="load yocs_velocity_smoother/VelocitySmootherNodelet mobile_base_nodelet_manager">
-    <rosparam file="$(find turtlebot_bringup)/param/defaults/smoother.yaml" command="load"/>
-    <remap from="navigation_velocity_smoother/smooth_cmd_vel" to="cmd_vel_mux/input/navi"/>
-      <!-- Robot velocity feedbacks; use the default base configuration -->
-      <remap from="navigation_velocity_smoother/odometry" to="odom"/>
-    <remap from="navigation_velocity_smoother/robot_cmd_vel" to="mobile_base/commands/velocity"/>
-  </node>
-
-  <node pkg="nodelet" type="nodelet" name="kobuki_safety_controller" args="load kobuki_safety_controller/SafetyControllerNodelet mobile_base_nodelet_manager">
-    <remap from="kobuki_safety_controller/cmd_vel" to="cmd_vel_mux/input/safety_controller"/>
-    <remap from="kobuki_safety_controller/events/bumper" to="mobile_base/events/bumper"/>
-    <remap from="kobuki_safety_controller/events/cliff" to="mobile_base/events/cliff"/>
-    <remap from="kobuki_safety_controller/events/wheel_drop" to="mobile_base/events/wheel_drop"/>
-  </node>
-
-  <arg name="odom_topic" default="odom" />
-  <arg name="laser_topic" default="scan" />
-  <arg name="custom_param_file" default="$(find turtlebot_navigation)/param/dummy.yaml"/>
-
-  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
-    <rosparam file="$(find turtlebot_navigation)/param/costmap_common_params.yaml" command="load" ns="global_costmap" />
-    <rosparam file="$(find turtlebot_navigation)/param/costmap_common_params.yaml" command="load" ns="local_costmap" />   
-    <rosparam file="$(find turtlebot_navigation)/param/local_costmap_params.yaml" command="load" />   
-    <rosparam file="$(find turtlebot_navigation)/param/global_costmap_params.yaml" command="load" />
-    <rosparam file="$(find turtlebot_navigation)/param/dwa_local_planner_params.yaml" command="load" />
-    <rosparam file="$(find turtlebot_navigation)/param/move_base_params.yaml" command="load" />
-    <rosparam file="$(find turtlebot_navigation)/param/global_planner_params.yaml" command="load" />
-    <rosparam file="$(find turtlebot_navigation)/param/navfn_global_planner_params.yaml" command="load" />
-    <!-- external params file that could be loaded into the move_base namespace -->
-    <rosparam file="$(arg custom_param_file)" command="load" />
-    
-    <!-- reset frame_id parameters using user input data -->
-    <param name="global_costmap/global_frame" value="$(arg global_frame_id)"/>
-    <param name="global_costmap/robot_base_frame" value="$(arg base_frame_id)"/>
-    <param name="local_costmap/global_frame" value="$(arg odom_frame_id)"/>
-    <param name="local_costmap/robot_base_frame" value="$(arg base_frame_id)"/>
-    <param name="DWAPlannerROS/global_frame_id" value="$(arg odom_frame_id)"/>
-
-    <remap from="cmd_vel" to="navigation_velocity_smoother/raw_cmd_vel"/>
-    <remap from="odom" to="$(arg odom_topic)"/>
-    <remap from="scan" to="$(arg laser_topic)"/>
-  </node>
-  
-  <include file="$(find gazebo_ros)/launch/empty_world.launch">
-    <arg name="world_name" value="$(find cp3_base)/worlds/cp3.world"/>
-    <arg name="gui" value="false"/>
-    <arg name="headless" value="true"/>
-    <arg name="use_sim_time" value="true"/>
-    <!--<arg name="debug" value="true"/>-->
-  </include>
-
-  <arg name="urdf_file" default="$(find xacro)/xacro.py '$(find cp3_base)/robot_description/cp3/urdf/kobuki_hexagons_kinect.urdf.xacro'" />
-  <param name="robot_description" command="$(arg urdf_file)" />
-
-  <node name="spawn_turtlebot_model" pkg="gazebo_ros" type="spawn_model"
-        args="-x 0 -y 0 -unpause -urdf -param robot_description -model mobile_base"/>
-  
-  <!-- Velocity muxer -->
-  <node pkg="nodelet" type="nodelet" name="mobile_base_nodelet_manager" args="manager"/>
-  <node pkg="nodelet" type="nodelet" name="cmd_vel_mux"
-        args="load yocs_cmd_vel_mux/CmdVelMuxNodelet mobile_base_nodelet_manager">
-    <param name="yaml_cfg_file" value="$(find turtlebot_bringup)/param/mux.yaml" />
-    <remap from="cmd_vel_mux/output" to="mobile_base/commands/velocity"/>
-  </node>
-
-  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
-    <param name="publish_frequency" type="double" value="30.0" />
-  </node>
-  
+ 
   <!-- Fake laser -->
   <node pkg="nodelet" type="nodelet" name="laserscan_nodelet_manager" args="manager"/>
   <node pkg="nodelet" type="nodelet" name="depthimage_to_laserscan"
