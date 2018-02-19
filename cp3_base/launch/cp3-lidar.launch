@@ -1,0 +1,18 @@
+<!-- Launch file for challenge problem 1 -->
+<launch>
+  <!-- Parameters for the kobuki base with the kinect sensor -->
+  <arg name="base" value="$(optenv TURTLEBOT_BASE kobuki)"/>
+  <arg name="3d_sensor" value="$(optenv TURTLEBOT_3D_SENSOR kinect)"/>
+  <arg name="stacks" value="$(optenv TURTLEBOT_STACKS hexagon)"/>
+  <arg name="kinect_mode" value="0"/>
+  <arg name="lidar_mode" value="1"/>
+
+  <!-- For some reason, mode is not getting passed to kinect, so force turn it off -->
+  <node pkg="rosservice" type="rosservice" name="tok" args="call --wait /mobile_base/kinect/mode '{mode : 0}'"/>
+
+  <node pkg="rosservice" type="rosservice" name="tol" args="call --wait /mobile_base/lidar/mode '{mode : 1}'"/>
+
+  <node name='laser_driver' pkg='brass_gazebo_plugins' type='hokuyo_node'>
+    <param name='frame_id' value='base_link_layer'/>
+  </node>
+</launch>

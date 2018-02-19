@@ -1,0 +1,35 @@
+<!-- Launch file for challenge problem 1 -->
+<launch>
+  <!-- Recognizes the markers and publishes the tf relative to the world -->
+
+    <node pkg="aruco_ros" type="marker_publisher" name="aruco_marker_publisher_front">
+      <remap from="/camera_info" to="/camera/rgb/camera_info"/>
+      <remap from="/image" to="/camera/rgb/image_raw"/>
+      <param name="marker_size" value="0.5"/>
+      <param name="reference_frame" value="/camera_depth_optical_frame"/>
+      <param name="camera_frame" value="/camera_depth_optical_frame"/>
+      <param name="rotation_fix" value="0.25 0 0 0.5 -0.5 -0.5 0.5"/>
+    </node>
+ 
+
+    <node pkg="aruco_ros" type="marker_publisher" name="aruco_marker_publisher_back">
+      <remap from="/camera_info" to="/camera360/camera_info"/>
+      <remap from="/image" to="/camera360/image_raw"/>
+      <param name="marker_size" value="0.5"/>
+      <param name="reference_frame" value="/camera_back_link"/>
+      <param name="camera_frame" value="/camera_back_link"/>
+      <param name="rotation_fix" value="0.25 0 0 0.5 -0.5 -0.5 0.5"/> 
+    </node>
+<!-- -0.25 0 0 0.5 0.5 0.5 0.5 -->
+   <!-- A hack to get around the memory problem in gazebo. It places
+        markers that are within a 5m radius of the robot -->
+   <node pkg="cp3_base" type="marker_manager.py" name="marker_manager">
+      <param name="~marker_file" value="$(find cp3_base)/maps/markers.json"/>
+   </node>
+
+   <!-- Publishes the pose of the robot wrt odom, based on markers only -->
+   <node pkg="cp3_base" type="marker_pose_publisher.py" name="marker_pose_publisher">
+      <param name="~marker_file" value="$(find cp3_base)/maps/markers.json"/>
+   </node>
+
+</launch>
