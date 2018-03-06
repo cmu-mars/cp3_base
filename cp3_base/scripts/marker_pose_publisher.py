@@ -238,11 +238,11 @@ def back_front_thread():
             trans = tr.translation_from_matrix(transform)
             rot = tr.quaternion_from_matrix(transform)
             br.sendTransform(trans, rot, time, "odom", "map")
-        elif published_transform is not None:
-            transform = published_transform
-            trans = tr.translation_from_matrix(transform)
-            rot = tr.quaternion_from_matrix(transform)
-            br.sendTransform(trans, rot, time, "odom", "map")
+        # elif published_transform is not None:
+        #     transform = published_transform
+        #     trans = tr.translation_from_matrix(transform)
+        #     rot = tr.quaternion_from_matrix(transform)
+        #     br.sendTransform(trans, rot, time, "odom", "map")
         rate.sleep()
 
 marker_dict = {}
