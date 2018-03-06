@@ -6652,4 +6652,7 @@
      <constant>0.25</constant>                    <linear>0.0</linear>     
      <quadratic>0.00</quadratic>                 </attenuation>    
     <cast_shadows>0</cast_shadows>                <direction>0 0 -1</direction>    
-   </light>         </world>                                          </sdf>
+   </light>        
+ </world>                                          
+</sdf>
+
