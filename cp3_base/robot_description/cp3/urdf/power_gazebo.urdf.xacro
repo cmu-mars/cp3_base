@@ -3,6 +3,27 @@
   <xacro:macro name="turtlebot_power_sim">
   	<gazebo>
   		<plugin name="turtlebot_power_simulator" filename="libgazebo_ros_battery.so">
+  			<battery_capacity>180000.0</battery_capacity>
+  			<coeff_fullspeed>14004.0</coeff_fullspeed>
+  			<coeff_halfspeed>6026.0</coeff_halfspeed>
+  			<coeff_fullspeed_rot>17640.0</coeff_fullspeed_rot>
+  			<coeff_safespeed>4000.0</coeff_safespeed>
+  			<fullspeed_threshold>0.4</fullspeed_threshold>
+  			<halfspeed_threshold>0.25</halfspeed_threshold>
+  			<safespeed_threshold>0.01</safespeed_threshold>
+  			<fullspeed_rot_threshold>0.3</fullspeed_rot_threshold>
+  			<halfspeed_rot_threshold>0.01</halfspeed_rot_threshold>
+
+  			<coeff_kinect_on>5132.0</coeff_kinect_on>
+  			<coeff_kinect_camera_only>2000.0</coeff_kinect_camera_only>
+  			<coeff_kinect_off>250.0</coeff_kinect_off>
+  			<coeff_lidar_on>7132.0</coeff_lidar_on>
+  			<coeff_lidar_off>0.0</coeff_lidar_off>
+  			<coeff_headlamp_on>10000.0</coeff_headlamp_on>
+  			<coeff_headlamp_off>0</coeff_headlamp_off>
+  			<coeff_cpu_utilization>115.28</coeff_cpu_utilization>
+  			<const_cpu_utilization>6894.0</const_cpu_utilization>
+
   		</plugin>
   	</gazebo>
   </xacro:macro>
