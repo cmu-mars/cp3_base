@@ -17,18 +17,19 @@ import transformations as tf
 from gazebo_msgs.srv import *
 import rospy
 from geometry_msgs.msg import *
+import getpass
 
+user = getpass.getuser()
 
 MARKER_TEMPLATE = '''
-
-<sdf version='1.4'>
+<sdf version='1.6'>
 <model name="Marker$ID">
   <static>1</static>
   <link name="link">
     <visual name="visual">
       <geometry>
         <mesh>
-          <uri>model:/marker$ID/meshes/Marker$ID.dae</uri>
+          <uri>file:///home/$WHO/catkin_ws/src/cp3_base/models/marker$ID/meshes/Marker$ID.dae</uri>
         </mesh>
       </geometry>
     </visual>
@@ -51,7 +52,7 @@ class Marker:
         self.name = name
         match = re.search("Marker([0-9]+)", name)
         num = match.group(1)
-        self.xml = MARKER_TEMPLATE.replace("$ID", num)
+        self.xml = MARKER_TEMPLATE.replace("$ID", num).replace("$WHO",user)
         pose = Pose ()
         pose.position.x = x
         pose.position.y = y
