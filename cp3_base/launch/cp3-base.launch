@@ -1,12 +1,13 @@
 <launch>
   <!-- Parameters for the kobuki base with the kinect sensor -->
+ <!-- <env name="GAZEBO_MODEL_PATH" value="$(find cp3_base)/models:$(optenv GAZEBO_MODEL_PATH)" />  -->
   <arg name="base" value="$(optenv TURTLEBOT_BASE kobuki)"/>
   <arg name="3d_sensor" value="$(optenv TURTLEBOT_3D_SENSOR kinect)"/>
   <arg name="stacks" value="$(optenv TURTLEBOT_STACKS hexagon)"/>
 
   <!-- The param file is turning off various navigation options on move_base to
        hamper the navigation -->
-  <arg name="custom_param_file" value="$(find cp3_base)/param/move_base_params.yaml"/>
+  <!-- <arg name="custom_param_file" value="$(find cp3_base)/param/move_base_params.yaml"/> -->
 
   <!-- This is the map file that will be used for planning -->
   <arg name="map_file" value="$(find cp3_base)/maps/cp3.yaml"/>
@@ -14,12 +15,17 @@
   <!-- Start the gazebo world, so that obstacles can be mapped -->
   <!-- NOTE: The maze in the world might not be needed if the map server is required -->
   <param name="/use_sim_time" value="true" />
+  <!--
+  <node name="gazebo" pkg="gazebo_ros" type="gzserver" respawn="false" output="screen" args="-e ode  $(find cp3_base)/worlds/cp3.world">
+  </node>
+-->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
     <arg name="world_name" value="$(find cp3_base)/worlds/cp3.world"/>
     <arg name="gui" value="false"/>
     <arg name="headless" value="true"/>
+
     <!--<arg name="debug" value="true"/>-->
-  </include>
+  </include> 
 
   <!-- Spawn the turtlebot -->
   <arg name="urdf_file" default="$(find xacro)/xacro.py '$(find cp3_base)/robot_description/cp3/urdf/kobuki_hexagons_kinect.urdf.xacro'" />
@@ -58,7 +64,7 @@
   </node>
 
   <include file="$(find turtlebot_navigation)/launch/includes/move_base.launch.xml">
-    <arg name="custom_param_file" value="$(arg custom_param_file)"/>
+    <!--<arg name="custom_param_file" value="$(arg custom_param_file)"/>-->
   </include>
 
   <node name="ig_interpreter" pkg="ig_action_server" type="ig_server.py" output="screen"/>

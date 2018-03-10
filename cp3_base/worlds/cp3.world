@@ -6089,7 +6089,13 @@
      <visual name="visual">      
       <geometry>       
        <box>        
-        <size>0.5 0.5 0.4</size>        
+        <size>0.5 0.5 0.4</size>    
+        <material>
+               <script>
+                     <uri>file://media/materials/scripts/cp3.material</uri>
+                     <name>obstacle/box</name>
+              </script>
+        </material>    
        </box>       
       </geometry>      
      </visual>     

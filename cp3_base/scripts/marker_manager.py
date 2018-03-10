@@ -28,7 +28,7 @@ MARKER_TEMPLATE = '''
     <visual name="visual">
       <geometry>
         <mesh>
-          <uri>file:///home/vagrant/catkin_ws/src/cp3_base/models/marker$ID/meshes/Marker$ID.dae</uri>
+          <uri>model:/marker$ID/meshes/Marker$ID.dae</uri>
         </mesh>
       </geometry>
     </visual>
