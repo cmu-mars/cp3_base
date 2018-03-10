@@ -17,14 +17,14 @@ RUN cd src/cp3_base && \
 RUN mkdir -p ~/.gazebo/models && ln -s src/cp3_base/models/* ~/.gazebo/models/
 
 # These are required for laser, headlamp, light sensor etc for CP3
-ENV BRASS_GZ_PLUGINS d21ae3f
+ENV BRASS_GZ_PLUGINS b8467c3
 RUN git clone https://github.com/cmu-mars/brass_gazebo_plugins.git \
 		src/brass_gazebo_plugins && \
 	cd src/brass_gazebo_plugins && \
 	git checkout "${BRASS_GZ_PLUGINS}"
 
 # These are required for visual marker stuff to work
-ENV ARUCO_ROS_REV a92d4c4
+ENV ARUCO_ROS_REV a66a064
 RUN git clone https://github.com/cmu-mars/aruco_ros.git \
 		src/aruco_ros && \
 	cd src/aruco_ros && \
@@ -38,7 +38,7 @@ RUN git clone https://github.com/cmu-mars/pysdf.git src/pysdf && \
 ENV GZ2TF_REV 133729a
 RUN git clone https://github.com/cmu-mars/gazebo2rviz.git src/gazebo2tf && \
 	cd src/gazebo2tf && \
-	git checkout "${GZ2TF_REV}"
+	git checkout "${GZ0TF_REV}"
 
 RUN  . /opt/ros/kinetic/setup.sh && \
 	catkin_make
