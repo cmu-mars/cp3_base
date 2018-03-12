@@ -62,13 +62,13 @@ def create_obstacle(x, y, id):
 def process_world(dom, append):
     cur_obs_id = 0
 
-    models = world_dom.getElementsByTagName("model")
+    models = dom.getElementsByTagName("model")
     for model in models:
         name = model.getAttribute("name")
         obs_result = re.match("Obstacle_([0-9]+)", name)
         if obs_result:
             if not append:
-                world.removeChild(model)
+                dom.removeChild(model)
             else:
                 cur_obs_id = int(obs_result.group(1))
     return cur_obs_id
@@ -100,7 +100,7 @@ if not os.path.isfile(args.world):
 
 world_dom = parse(args.world)
 world = world_dom.getElementsByTagName("world")
-cur_obs_id = process_world(world, args.append)
+cur_obs_id = process_world(world[0], args.append)
 
 map = load_map(args.map)
 obstacles = map["worldobstacles"]
