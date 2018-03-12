@@ -65,7 +65,7 @@ def process_world(dom, append):
     models = world_dom.getElementsByTagName("model")
     for model in models:
         name = model.getAttribute("name")
-        obs_result = re.match("Obstruction_([0-9]+)", name)
+        obs_result = re.match("Obstacle_([0-9]+)", name)
         if obs_result:
             if not append:
                 world.removeChild(model)
