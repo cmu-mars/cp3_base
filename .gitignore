@@ -1,1 +1,4 @@
 .include_directory
+cp3_base/models/marker*
+cp3_base/models/obstruction/model.sdf
+instructions

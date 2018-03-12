@@ -14,7 +14,12 @@ RUN cd src/cp3_base && \
        scripts/generate-marker-models.py marker_imgs scripts/marker-template ~/catkin_ws/src/cp3_base/models && \
        sed s/%USER%/$(whoami)/g models/obstruction/model-src.sdf > models/obstruction/model.sdf
 
+
 RUN mkdir -p ~/.gazebo/models && ln -s src/cp3_base/models/* ~/.gazebo/models/
+
+# Now, place obstacles in teh world (which also requires absolute paths)
+RUN cd src/cp3_base && \
+		scripts/generate-obstacles.py maps/cp3.json worlds/cp3.world
 
 # These are required for laser, headlamp, light sensor etc for CP3
 ENV BRASS_GZ_PLUGINS d21ae3f
