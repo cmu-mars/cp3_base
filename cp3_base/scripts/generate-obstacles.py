@@ -17,10 +17,16 @@ xml = '''
   <model name='%NAME%'>
       <static>1</static>
       <link name='link'>
+        <collision name="collision">
+            <geometry>
+                <box><size>0.4 0.4 0.4</size></box>
+            </geometry>
+            <max_contacts>10</max_contacts>
+        </collision>
         <visual name='visual'>
           <geometry>
             <box>
-              <size>0.5 0.5 0.5</size>
+              <size>0.4 0.4 0.4</size>
             </box>
           </geometry>
           <material>
@@ -49,7 +55,7 @@ def create_obstacle(x, y, id):
    model.setAttribute("name", id)
 
    pose = dom.createElement("pose")
-   pose.appendChild(dom.createTextNode("%s %s 0.25 0 0 0" %(x,y)))
+   pose.appendChild(dom.createTextNode("%s %s 0.2 0 0 0" %(x,y)))
    model.appendChild(pose)
 
    script = dom.getElementsByTagName("script")[0]
@@ -62,13 +68,13 @@ def create_obstacle(x, y, id):
 def process_world(dom, append):
     cur_obs_id = 0
 
-    models = world_dom.getElementsByTagName("model")
+    models = dom.getElementsByTagName("model")
     for model in models:
         name = model.getAttribute("name")
-        obs_result = re.match("Obstruction_([0-9]+)", name)
+        obs_result = re.match("Obstacle_([0-9]+)", name)
         if obs_result:
             if not append:
-                world.removeChild(model)
+                dom.removeChild(model)
             else:
                 cur_obs_id = int(obs_result.group(1))
     return cur_obs_id
@@ -100,7 +106,7 @@ if not os.path.isfile(args.world):
 
 world_dom = parse(args.world)
 world = world_dom.getElementsByTagName("world")
-cur_obs_id = process_world(world, args.append)
+cur_obs_id = process_world(world[0], args.append)
 
 map = load_map(args.map)
 obstacles = map["worldobstacles"]
@@ -114,5 +120,6 @@ for obs in obstacles:
 with open(args.output, 'w') as f:
     world_dom.writexml(f, indent=' ', addindent=' ', newl='\n')
     world_dom.unlink()
+
 
 
