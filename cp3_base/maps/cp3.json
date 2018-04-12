@@ -2065,14 +2065,16 @@
       "coord": {
         "x": -6.216,
         "y": 0
-      }
+      },
+      "status" : "off"
     },
     {
       "light-id": "light3",
       "coord": {
         "x": -28.865,
         "y": 0
-      }
+      },
+      "status" : "off"
     },
     {
       "light-id": "light4",
@@ -2114,7 +2116,8 @@
       "coord": {
         "x": 51.892,
         "y": 0
-      }
+      },
+      "status" : "off"
     },
     {
       "light-id": "light13",
@@ -2149,7 +2152,8 @@
       "coord": {
         "x": 4.973,
         "y": -20.811
-      }
+      },
+      "status" : "off"
     },
     {
       "light-id": "light20",
@@ -2415,14 +2419,16 @@
       "coord": {
         "x": -13.027,
         "y": 0
-      }
+      },
+      "status" : "off"
     },
     {
       "light-id": "light63",
       "coord": {
         "x": -20.919,
         "y": 0
-      }
+      },
+      "status" : "off"
     },
     {
       "light-id": "light65",
@@ -2471,7 +2477,8 @@
       "coord": {
         "x": 5.027,
         "y": -28.703
-      }
+      },
+      "status" : "off"
     },
     {
       "light-id": "light73",
@@ -2583,7 +2590,8 @@
       "coord": {
         "x": 51.946,
         "y": 7.676
-      }
+      },
+      "status" : "off"
     }
   ],
   "initial-points": []
