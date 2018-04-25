@@ -22,18 +22,19 @@ RUN cd src/cp3_base && \
 		scripts/generate-obstacles.py maps/cp3.json worlds/cp3.world
 
 # These are required for laser, headlamp, light sensor etc for CP3
-ENV BRASS_GZ_PLUGINS b8467c3
+#ENV BRASS_GZ_PLUGINS b8467c3
 RUN git clone https://github.com/cmu-mars/brass_gazebo_plugins.git \
-		src/brass_gazebo_plugins && \
-	cd src/brass_gazebo_plugins && \
-	git checkout "${BRASS_GZ_PLUGINS}"
+		src/brass_gazebo_plugins 
+#&& \
+#	cd src/brass_gazebo_plugins && \
+#	git checkout "${BRASS_GZ_PLUGINS}"
 
 # These are required for visual marker stuff to work
-ENV ARUCO_ROS_REV a66a064
+#ENV ARUCO_ROS_REV a66a064
 RUN git clone https://github.com/cmu-mars/aruco_ros.git \
-		src/aruco_ros && \
-	cd src/aruco_ros && \
-	git checkout "${ARUCO_ROS_REV}"
+		src/aruco_ros #&& \
+#	cd src/aruco_ros && \
+#	git checkout "${ARUCO_ROS_REV}"
 
 ENV PYSDF_REV 6fe0394
 RUN git clone https://github.com/cmu-mars/pysdf.git src/pysdf && \
