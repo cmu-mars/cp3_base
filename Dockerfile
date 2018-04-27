@@ -15,7 +15,7 @@ RUN cd src/cp3_base && \
        sed s/%USER%/$(whoami)/g models/obstruction/model-src.sdf > models/obstruction/model.sdf
 
 
-RUN mkdir -p ~/.gazebo/models && ln -s src/cp3_base/models/* ~/.gazebo/models/
+RUN mkdir -p ~/.gazebo/models && ln -s /home/$(whoami)/catkin_ws/src/cp3_base/models/* ~/.gazebo/models/
 
 # Now, place obstacles in teh world (which also requires absolute paths)
 RUN cd src/cp3_base && \
@@ -32,7 +32,8 @@ RUN git clone https://github.com/cmu-mars/brass_gazebo_plugins.git \
 # These are required for visual marker stuff to work
 #ENV ARUCO_ROS_REV a66a064
 RUN git clone https://github.com/cmu-mars/aruco_ros.git \
-		src/aruco_ros #&& \
+		src/aruco_ros 
+#&& \
 #	cd src/aruco_ros && \
 #	git checkout "${ARUCO_ROS_REV}"
 
