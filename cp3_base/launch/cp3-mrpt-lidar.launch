@@ -1,0 +1,5 @@
+<launch>
+  	<include file="$(find cp3_base)/launch/p3-base.launch" />
+  	<include file="$(find cp3_base)/launch/cp3-mrpt.launch" />
+  	<include file="$(find cp3_base)/launch/cp3-lidar.launch" />
+</launch>

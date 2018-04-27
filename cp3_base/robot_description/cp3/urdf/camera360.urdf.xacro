@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<robot name="sensor_camera360" xmlns:xacro="http://ros.org/wiki/xacro">
+	<xacro:property name="camera360_size" value="0.05"/>
+	<xacro:macro name="sensor_camera360" params="parent">
+		<joint name="camera360_rgb_joint" type="fixed">
+			<axis xyz="0 1 0"/>
+			<origin xyz="0 0 0.51" rpy="0 0 ${M_PI}"/> <!-- 0 0 0.51 -->
+			<parent link="${parent}"/>
+			<child link="camera360_link"/>
+		</joint>
+
+		<link name="camera360_link">
+			<collision>
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+				<geometry>
+					<box size="${camera360_size} ${camera360_size} ${camera360_size}"/>
+				</geometry>
+			</collision>
+
+			<visual>
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+				<geometry>
+					<box size="${camera360_size} ${camera360_size} ${camera360_size}"/>
+				</geometry>
+				<material name="grey"/>
+			</visual> 
+
+			<inertial>
+				<mass value="1e-5"/>
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+				<inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6"/>
+			</inertial>
+		</link>
+
+		<camera360 />
+	</xacro:macro>
+</robot>
