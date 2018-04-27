@@ -32,9 +32,9 @@ RUN git clone https://github.com/cmu-mars/brass_gazebo_plugins.git \
 # These are required for visual marker stuff to work
 #ENV ARUCO_ROS_REV a66a064
 RUN git clone https://github.com/cmu-mars/aruco_ros.git \
-		src/aruco_ros 
-#&& \
-#	cd src/aruco_ros && \
+		src/aruco_ros && \
+	cd src/aruco_ros && \
+	git checkout cmu-mars
 #	git checkout "${ARUCO_ROS_REV}"
 
 ENV PYSDF_REV 6fe0394
