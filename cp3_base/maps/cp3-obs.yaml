@@ -1,0 +1,7 @@
+# Generated with generate-ros-map.y ['-s10', '-l', '1', '-b', '-o', '/home/vagrant/catkin_ws/src/cp3_base/maps/', '/home/vagrant/catkin_ws/src/cp3_base/maps/cp3.json', 'cp3-obs']
+image: cp3-obs.png
+resolution: 0.1
+origin: [-49, -59, 0]
+occupied_thresh: 0.65
+free_thresh: 0.196
+negate: 0
