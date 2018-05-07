@@ -18,7 +18,7 @@
   			<coeff_kinect_camera_only>2000.0</coeff_kinect_camera_only>
   			<coeff_kinect_off>250.0</coeff_kinect_off>
   			<coeff_lidar_on>7132.0</coeff_lidar_on>
-  			<coeff_lidar_off>0.0</coeff_lidar_off>
+  			<coeff_lidar_off>250.0</coeff_lidar_off>
   			<coeff_headlamp_on>10000.0</coeff_headlamp_on>
   			<coeff_headlamp_off>0</coeff_headlamp_off>
   			<coeff_cpu_utilization>115.28</coeff_cpu_utilization>
