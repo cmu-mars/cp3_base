@@ -1,0 +1,6 @@
+ <launch>
+  <arg name="map_file" value="$(find cp3_base)/maps/cp3-obs.yaml"/>
+
+  <node name="map_server_obs" pkg="map_server" type="map_server" args="$(arg map_file)"/>
+
+</launch>
