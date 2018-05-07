@@ -1,5 +1,6 @@
 <launch>
   	<include file="$(find cp3_base)/launch/cp3-base.launch" />
+   	<include file="$(find cp3_base)/launch/cp3-obstacle-maps.launch" />
   	<include file="$(find cp3_base)/launch/cp3-aruco.launch" />
 
   	<node pkg="rosservice" type="rosservice" name="tok" args="call --wait /mobile_base/kinect/mode '{mode : 2}'"/>
