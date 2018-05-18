@@ -1,7 +1,7 @@
 FROM cmu-mars/gazebo
 
 RUN sudo apt-get update && \
-    sudo apt-get install -y ros-kinetic-mrpt-navigation libignition-math2-dev
+    sudo apt-get install -y ros-kinetic-mrpt-localization libignition-math2-dev
 
 ADD cp3_base src/cp3_base
 
