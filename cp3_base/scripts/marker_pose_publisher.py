@@ -205,7 +205,8 @@ def list_markers_gen(transform):
 
                 if sum_mat is None:
                     sum_mat = mat3
-                    
+                    # BRS Let's not use averages - seems to cause normailization errors?
+                    break
                 else:
                     sum_mat = sum_mat + mat3
             except:
@@ -231,11 +232,12 @@ def back_front_thread():
         if front_transform["transform"] is not None and time.to_sec() - front_transform["time"].to_sec() < 1:
             sum_mat = front_transform["transform"]
             num = 1.0
-        if back_transform["transform"] is not None and time.to_sec() - back_transform["time"].to_sec() < 1:
+        # BRS Let's not use averages - seems to cause normailization errors?
+        if num == 0 and back_transform["transform"] is not None and time.to_sec() - back_transform["time"].to_sec() < 1:
             sum_mat = back_transform["transform"] if sum_mat is None else sum_mat + back_transform["transform"]
             num = num + 1.0
         if num > 0:
-            transform = sum_mat / num
+            transform = sum_mat # BRS Not dividing by num  #/ num
             published_transform = transform
             trans = tr.translation_from_matrix(transform)
             rot = tr.quaternion_from_matrix(transform)
