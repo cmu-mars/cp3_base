@@ -178,36 +178,38 @@ def list_markers_gen(transform):
         t_latest = rospy.Time(0)
         for marker in markers.data:
             marker_id = "/Marker%s" %marker
+            try:
+                to = listener.getLatestCommonTime(marker_id, 'odom')
 
-            to = listener.getLatestCommonTime(marker_id, 'odom')
+                t = to
+                #(w_mat, tw) = getMarkerTFFromMap(marker)
+                (w_mat, tw) = getWorldMarkerMatrixFromTF(marker)
 
-            t = to
-            #(w_mat, tw) = getMarkerTFFromMap(marker)
-            (w_mat, tw) = getWorldMarkerMatrixFromTF(marker)
+                if w_mat is None:
+                    continue
+                if tw is not None:
+                    t = tw if tw > to else to
 
-            if w_mat is None:
-                continue
-            if tw is not None:
-                t = tw if tw > to else to
+                t_latest = t if t > t_latest else t_latest
 
-            t_latest = t if t > t_latest else t_latest
-
-            
-            (trans_o,rot_o) = listener.lookupTransform(marker_id, 'odom', to)
-
-
-            t_o = numpy.dot(tr.translation_matrix(trans_o), tr.quaternion_matrix(rot_o))
-
-            o_mat_i = tr.inverse_matrix(t_o) # need odom wrt marker
-            mat3 = numpy.dot(o_mat_i, w_mat) # odom wrt world
-            mat3 = tr.inverse_matrix(mat3) # world wrt odom
-            num = num + 1
-
-            if sum_mat is None:
-                sum_mat = mat3
                 
-            else:
-                sum_mat = sum_mat + mat3
+                (trans_o,rot_o) = listener.lookupTransform(marker_id, 'odom', to)
+
+
+                t_o = numpy.dot(tr.translation_matrix(trans_o), tr.quaternion_matrix(rot_o))
+
+                o_mat_i = tr.inverse_matrix(t_o) # need odom wrt marker
+                mat3 = numpy.dot(o_mat_i, w_mat) # odom wrt world
+                mat3 = tr.inverse_matrix(mat3) # world wrt odom
+                num = num + 1
+
+                if sum_mat is None:
+                    sum_mat = mat3
+                    
+                else:
+                    sum_mat = sum_mat + mat3
+            except:
+                pass
         if sum_mat is None:
             return
         avg_mat = sum_mat / num
