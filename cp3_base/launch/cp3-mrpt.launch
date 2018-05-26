@@ -5,14 +5,14 @@
   <node pkg="mrpt_localization" type="mrpt_localization_node" name="mrpt_localization_node" output="screen">
     <param name="ini_file" value="$(arg ini_file)"/>
     <param name="map_file" value=""/> <!-- Do not pass - by default gets it from map server -->
-    <param name="sensor_sources" value="scan"/>
+    <param name="sensor_sources" value="/scan"/>
     <param name="tf_prefix"  value=""/>
     <param name="global_frame_id" value="map"/>
     <param name="odom_frame_id" value="odom"/>
     <param name="base_frame_id" value="base_footprint"/>
     <param name="pose_broadcast" value="false"/>
     <param name="tf_broadcast" value="true"/>
-    <param name="use_map_topic" value="true"/>
+    <param name="use_map_topic" value="false"/>
     <param name="gui_mrpt" value="false"/>
     <param name="debug" value="false"/>
 

@@ -1,8 +1,12 @@
 <!-- Launch file for challenge problem 1 -->
 <launch>
   <!-- Recognizes the markers and publishes the tf relative to the world -->
-
-    <node pkg="aruco_ros" type="marker_publisher" name="aruco_marker_publisher_front">
+ <!--<node name="gazebo2tf" pkg="gazebo2rviz" type="gazebo2tf_node.py" output="screen">
+    <param name="ignore_submodels_of" value="" type="str" />
+    <param name="include_only_models" value="Marker" type="str" />
+  </node>
+  -->
+     <node pkg="aruco_ros" type="marker_publisher" name="aruco_marker_publisher_front">
       <remap from="/camera_info" to="/camera/rgb/camera_info"/>
       <remap from="/image" to="/camera/rgb/image_raw"/>
       <param name="marker_size" value="0.5"/>

@@ -67,18 +67,24 @@ def getMarkerTFFromMap(m):
     w_mat = None
 
     if marker is not None:
-        t = [marker["x"], marker["y"], 0.25]
-        w = 0
+        
+        w = 0 # east
+        p=(-marker["x"], -marker["y"], -0.25) #east
         if marker["wall"] == "north":
-            w = -math.pi / 2
-        elif marker["wall"] == "south":
+            p=(marker["y"], -marker["x"], -0.25)
             w = math.pi / 2
+        elif marker["wall"] == "south":
+            p=(-marker["y"], marker["x"], -0.25)
+            w = -math.pi / 2
         elif marker["wall"] == "west":
+            p=(marker["x"], marker["y"], -0.25)
             w = math.pi
+        q = tr.quaternion_from_euler(0,0,w)
 
-        t = tr.translation_matrix((marker["x"], marker["y"], 0.25))
-        r = tr.quaternion_matrix(tr.quaternion_from_euler(0,0,w))
-        w_mat = tr.concatenate_matrices(t, r)
+        print("Map: (%s) Marker%s: %s %s" %(marker["wall"],m,p,q))
+        t = tr.translation_matrix(p)
+        r = tr.quaternion_matrix(q)
+        w_mat = numpy.dot(t, r)
 
     return (w_mat, None)
 
@@ -89,6 +95,7 @@ def getWorldMarkerMatrixFromTF(m):
     try:
         tw = listener.getLatestCommonTime(marker_link, 'world')
         (t,r) = listener.lookupTransform(marker_link, 'world', tw)
+        print("TF: Marker%s: %s %s" %(m,t, r))
         w_mat = numpy.dot(tr.translation_matrix(t), tr.quaternion_matrix(r))
     except:
         return (None, None)
@@ -101,66 +108,66 @@ def list_markers(markers):
     with lock:
         global_markers |= set(markers.data)
 
-def publish_marker_transforms():
-    global global_markers
-    sum_mat = None
-    num = 0.0
-    t_latest = rospy.Time(0)
-    with lock:
+# def publish_marker_transforms():
+#     global global_markers
+#     sum_mat = None
+#     num = 0.0
+#     t_latest = rospy.Time(0)
+#     with lock:
 
-        if len(global_markers) == 0:
-            rospy.loginfo("There are no markers to process")
-            return
+#         if len(global_markers) == 0:
+#             rospy.loginfo("There are no markers to process")
+#             return
 
-        for marker in global_markers:
+#         for marker in global_markers:
             
-            marker_id = "/Marker%s" %marker
+#             marker_id = "/Marker%s" %marker
 
-            to = listener.getLatestCommonTime(marker_id, 'odom')
+#             to = listener.getLatestCommonTime(marker_id, 'odom')
 
-            t = to
-            #(w_mat, tw) = getMarkerTFFromMap(marker)
-            (w_mat, tw) = getWorldMarkerMatrixFromTF(marker)
+#             t = to
+#             (w_mat, tw) = getMarkerTFFromMap(marker)
+#             #(w_mat, tw) = getWorldMarkerMatrixFromTF(marker)
 
-            if w_mat is None:
-                continue
-            if tw is not None:
-                t = tw if tw > to else to
+#             if w_mat is None:
+#                 continue
+#             if tw is not None:
+#                 t = tw if tw > to else to
 
-            t_latest = t if t > t_latest else t_latest
+#             t_latest = t if t > t_latest else t_latest
 
             
-            (trans_o,rot_o) = listener.lookupTransform(marker_id, 'odom', to)
+#             (trans_o,rot_o) = listener.lookupTransform(marker_id, 'odom', to)
 
 
-            t_o = numpy.dot(tr.translation_matrix(trans_o), tr.quaternion_matrix(rot_o))
+#             t_o = numpy.dot(tr.translation_matrix(trans_o), tr.quaternion_matrix(rot_o))
 
-            o_mat_i = tr.inverse_matrix(t_o) # need odom wrt marker
-            mat3 = numpy.dot(o_mat_i, w_mat) # odom wrt world
-            mat3 = tr.inverse_matrix(mat3) # world wrt odom
-            num = num + 1
+#             o_mat_i = tr.inverse_matrix(t_o) # need odom wrt marker
+#             mat3 = numpy.dot(o_mat_i, w_mat) # odom wrt world
+#             mat3 = tr.inverse_matrix(mat3) # world wrt odom
+#             num = num + 1
 
-            if sum_mat is None:
-                sum_mat = mat3
+#             if sum_mat is None:
+#                 sum_mat = mat3
                 
-            else:
-                sum_mat = sum_mat + mat3
-        if sum_mat is None:
-            return
-        avg_mat = sum_mat / num
-        #r_o = numpy.dot(tr.translation_matrix((0,0,0)), tr.quaternion_matrix((0,0,0, 1)))
+#             else:
+#                 sum_mat = sum_mat + mat3
+#         if sum_mat is None:
+#             return
+#         avg_mat = sum_mat / num
+#         #r_o = numpy.dot(tr.translation_matrix((0,0,0)), tr.quaternion_matrix((0,0,0, 1)))
 
-        #avg_mat = numpy.dot(r_o, avg_mat)
-
-
-        trans = tr.translation_from_matrix(avg_mat)
-        rot = tr.quaternion_from_matrix(avg_mat)
-
-        br.sendTransform(trans, rot, t_latest, "odom", "map")
-        global_markers.clear()
+#         #avg_mat = numpy.dot(r_o, avg_mat)
 
 
-    #br.sendTransform((0,0,0), (0,0,0,1), t_latest, "odom", "map")
+#         trans = tr.translation_from_matrix(avg_mat)
+#         rot = tr.quaternion_from_matrix(avg_mat)
+
+#         br.sendTransform(trans, rot, t_latest, "odom", "map")
+#         global_markers.clear()
+
+
+#     #br.sendTransform((0,0,0), (0,0,0,1), t_latest, "odom", "map")
 
 def thread_main():
     rate = rospy.Rate(10)
@@ -182,9 +189,15 @@ def list_markers_gen(transform):
                 to = listener.getLatestCommonTime(marker_id, 'odom')
 
                 t = to
-                #(w_mat, tw) = getMarkerTFFromMap(marker)
-                (w_mat, tw) = getWorldMarkerMatrixFromTF(marker)
+                (w_mat, tw) = getMarkerTFFromMap(marker)
+                #(w_mat_tr, tw) = getWorldMarkerMatrixFromTF(marker)
+                #(w_mat, tw) = getWorldMarkerMatrixFromTF(marker)
 
+                # if marker==412:
+                #     print("Marker%s" %marker)
+                #     print(w_mat)
+                #     print(w_mat_tr)
+                
                 if w_mat is None:
                     continue
                 if tw is not None:
@@ -205,8 +218,6 @@ def list_markers_gen(transform):
 
                 if sum_mat is None:
                     sum_mat = mat3
-                    # BRS Let's not use averages - seems to cause normailization errors?
-                    break
                 else:
                     sum_mat = sum_mat + mat3
             except:
@@ -233,14 +244,16 @@ def back_front_thread():
             sum_mat = front_transform["transform"]
             num = 1.0
         # BRS Let's not use averages - seems to cause normailization errors?
-        if num == 0 and back_transform["transform"] is not None and time.to_sec() - back_transform["time"].to_sec() < 1:
+        if back_transform["transform"] is not None and time.to_sec() - back_transform["time"].to_sec() < 1:
             sum_mat = back_transform["transform"] if sum_mat is None else sum_mat + back_transform["transform"]
             num = num + 1.0
         if num > 0:
-            transform = sum_mat # BRS Not dividing by num  #/ num
+            transform = sum_mat / num
             published_transform = transform
             trans = tr.translation_from_matrix(transform)
             rot = tr.quaternion_from_matrix(transform)
+            r,p,y = tr.euler_from_quaternion(rot)
+            rot = tr.quaternion_from_euler(r,p,y)
             br.sendTransform(trans, rot, time, "odom", "map")
         # elif published_transform is not None:
         #     transform = published_transform
