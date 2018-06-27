@@ -183,6 +183,7 @@ def list_markers_gen(transform):
         sum_mat = None
         num = 0.0
         t_latest = rospy.Time(0)
+        #print("Got some markers: %s" %markers)
         for marker in markers.data:
             marker_id = "/Marker%s" %marker
             try:
